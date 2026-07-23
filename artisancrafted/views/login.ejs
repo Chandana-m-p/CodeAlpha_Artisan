@@ -1,0 +1,91 @@
+<%- include('partials/header', { title: 'Sign In' }) %>
+
+<main class="flex items-center justify-center min-h-[80vh] relative px-margin-mobile">
+  <div class="aura-glow absolute w-[600px] h-[600px] top-[-10%] left-[-10%] opacity-40"></div>
+  <div class="aura-glow absolute w-[600px] h-[600px] bottom-[-10%] right-[-10%] opacity-30"></div>
+
+  <div class="w-full max-w-[480px] z-10">
+    <div class="liquid-glass rounded-xl p-8 md:p-12 shadow-2xl">
+      <header class="text-center mb-10">
+        <h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Welcome Back</h1>
+        <p class="font-body-md text-body-md text-on-surface-variant">Access your saved collections and orders</p>
+      </header>
+
+      <form id="login-form" class="space-y-6">
+        <div class="space-y-2">
+          <label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2" for="email">
+            <span class="material-symbols-outlined text-[18px]">mail</span> Email Address
+          </label>
+          <input class="input-elegant w-full px-0 py-3 font-body-md text-on-surface placeholder:text-outline/40" id="email" name="email" placeholder="curator@artisancrafted.com" required type="email"/>
+        </div>
+        <div class="space-y-2">
+          <label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2" for="password">
+            <span class="material-symbols-outlined text-[18px]">lock</span> Password
+          </label>
+          <input class="input-elegant w-full px-0 py-3 font-body-md text-on-surface" id="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" required type="password"/>
+        </div>
+        <div id="login-error" class="text-error text-sm hidden"></div>
+        <div class="flex items-center justify-between pt-2">
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input class="rounded border-outline-variant bg-surface-container-low text-primary focus:ring-primary/40" type="checkbox"/>
+            <span class="font-label-md text-label-md text-on-surface-variant">Remember Me</span>
+          </label>
+          <a class="font-label-md text-label-md text-primary hover:underline" href="#">Forgot Password?</a>
+        </div>
+        <button class="primary-glow-button w-full py-4 bg-primary-container text-on-primary-container font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 group transition-all" type="submit">
+          Sign In
+          <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </button>
+      </form>
+
+      <div class="relative my-stack-md text-center">
+        <span class="absolute inset-x-0 top-1/2 h-px bg-outline-variant/20"></span>
+        <span class="relative px-4 bg-surface-container font-label-md text-[10px] uppercase tracking-widest text-outline/60">Or continue with</span>
+      </div>
+      <div class="grid grid-cols-2 gap-stack-sm">
+        <button class="flex items-center justify-center gap-2 py-3 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-variant/20 transition-all font-label-md text-label-md">
+          <span class="material-symbols-outlined">google</span> Google
+        </button>
+        <button class="flex items-center justify-center gap-2 py-3 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-variant/20 transition-all font-label-md text-label-md">
+          <span class="material-symbols-outlined">phone_iphone</span> Apple
+        </button>
+      </div>
+    </div>
+    <footer class="mt-stack-md text-center">
+      <p class="font-body-md text-body-md text-on-surface-variant">
+        New to ArtisanCrafted?
+        <a class="text-primary font-bold hover:text-primary-fixed-dim transition-colors ml-1" href="/register">Create an Account</a>
+      </p>
+    </footer>
+  </div>
+</main>
+
+<script>
+  document.getElementById('login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errorEl = document.getElementById('login-error');
+    errorEl.classList.add('hidden');
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        errorEl.textContent = data.message || 'Invalid credentials';
+        errorEl.classList.remove('hidden');
+        return;
+      }
+      localStorage.setItem('token', data.token);
+      window.location.href = '/catalog';
+    } catch (err) {
+      errorEl.textContent = 'Connection error. Please try again.';
+      errorEl.classList.remove('hidden');
+    }
+  });
+</script>
+
+<%- include('partials/footer') %>

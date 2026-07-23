@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ArtisanCrafted | Admin Dashboard</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"secondary-container": "#a300d3", "surface-container": "#251b31", "on-error": "#690005", "tertiary-fixed-dim": "#cdc2dd", "secondary-fixed": "#fad7ff", "on-primary-container": "#5f3370", "tertiary-fixed": "#e9def9", outline: "#99907c", "tertiary-container": "#b8aec8", "primary-fixed": "#f9d8ff", "on-error-container": "#ffdad6", "surface-container-lowest": "#13091e", surface: "#190f24", primary: "#f0bcff", "on-secondary-container": "#f9d4ff", "on-tertiary-container": "#494157", "surface-container-low": "#21172c", "surface-container-highest": "#3b3047", "on-tertiary-fixed": "#1e182c", "on-secondary-fixed-variant": "#77009a", "on-primary-fixed-variant": "#613472", "on-tertiary": "#342d42", "on-secondary": "#54006e", "primary-fixed-dim": "#eab3fa", "inverse-surface": "#eedcfa", "surface-bright": "#40344c", "on-tertiary-fixed-variant": "#4b4359", background: "#190f24", "inverse-primary": "#7b4c8b", secondary: "#efb0ff", tertiary: "#d4cae5", "outline-variant": "#4d4635", "on-primary-fixed": "#310343", "on-surface-variant": "#d0c5af", "primary-container": "#d5a0e5", "secondary-fixed-dim": "#efb0ff", "surface-variant": "#3b3047", "surface-dim": "#190f24", "error-container": "#93000a", "inverse-on-surface": "#372c42", "on-secondary-fixed": "#330044", error: "#ffb4ab", "on-primary": "#481d59", "on-surface": "#eedcfa", "on-background": "#eedcfa", "surface-tint": "#eab3fa", "surface-container-high": "#30253c"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {"margin-mobile": "1rem", "container-max": "1280px", "margin-desktop": "2.5rem", "stack-md": "1.5rem", "stack-lg": "3rem", gutter: "1.5rem", "stack-sm": "0.5rem"}, fontFamily: {"headline-md": ["Playfair Display"], "label-md": ["Manrope"], "display-lg": ["Playfair Display"], "body-lg": ["Manrope"], "headline-lg": ["Playfair Display"], "body-md": ["Manrope"], headline: ["Playfair Display"], display: ["Playfair Display"], body: ["Manrope"], label: ["Manrope"]}, fontSize: {"headline-md": ["24px", {lineHeight: "1.4", fontWeight: "500"}], "label-md": ["14px", {lineHeight: "1", letterSpacing: "0.05em", fontWeight: "600"}], "display-lg": ["48px", {lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "1.6", fontWeight: "400"}], "headline-lg": ["32px", {lineHeight: "1.3", fontWeight: "500"}], "body-md": ["16px", {lineHeight: "1.6", fontWeight: "400"}]}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(242, 202, 80, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .aura-glow {
+            background: radial-gradient(circle, rgba(242, 202, 80, 0.08) 0%, rgba(26, 16, 37, 0) 70%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(242, 202, 80, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen selection:bg-primary selection:text-on-primary">
+<!-- Atmospheric Background Glows -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+<div class="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] aura-glow rounded-full"></div>
+<div class="absolute -bottom-[20%] -right-[10%] w-[60%] h-[60%] aura-glow rounded-full opacity-50"></div>
+</div>
+<div class="flex relative z-10">
+<!-- Predicted SideNavBar -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-screen border-r border-outline-variant/10 bg-surface-container-lowest w-64 shadow-xl">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container">local_florist</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary leading-tight">ArtisanCrafted</h1>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label-md">Admin Suite</p>
+</div>
+</div>
+<nav class="flex-1 mt-8 space-y-1 px-2 custom-scrollbar overflow-y-auto">
+<a class="bg-secondary-container/30 text-primary border-l-4 border-primary px-4 py-3 flex items-center gap-3 transition-all translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant/20 px-4 py-3 flex items-center gap-3 transition-all hover:text-on-surface" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Products</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant/20 px-4 py-3 flex items-center gap-3 transition-all hover:text-on-surface" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant/20 px-4 py-3 flex items-center gap-3 transition-all hover:text-on-surface" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Customers</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant/20 px-4 py-3 flex items-center gap-3 transition-all hover:text-on-surface" href="#">
+<span class="material-symbols-outlined">campaign</span>
+<span class="font-label-md text-label-md">Marketing</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant/20 px-4 py-3 flex items-center gap-3 transition-all hover:text-on-surface" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</nav>
+<div class="p-4 border-t border-outline-variant/10">
+<a class="text-on-surface-variant hover:bg-surface-variant/20 px-4 py-3 flex items-center gap-3 transition-all hover:text-on-surface rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<div class="mt-4 flex items-center gap-3 px-4 py-2">
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-primary/20 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a creative director in his late 30s with a neat beard, wearing a high-end charcoal turtleneck, set against a softly blurred studio background with champagne gold lighting. The portrait embodies quiet luxury and corporate refinement." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDL8u0ZrngQrCu8EiWGJKLkNVjlAG587zv239TNHhjmedHNWKcz2ztigTNJWw0-bxKHxuGOS8GvijFJeQ-n6uV9FAkfSBw1Sb81tU4BHS2rblLwbxX6HN6-ZEenWNRLdT-hPNcDS4CfrKYfXOKktyaEtyE15JsOo8c0Y_aee4BnlexXRJI1Sn9sva6rsnnU7MmklV9a9GswiVmedPx32fuMvTE6QsInsMVCxGEdqC_TgbkS0BE9aZKVDg"/>
+</div>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md text-on-surface truncate">Julian Sterling</p>
+<p class="text-[10px] text-on-surface-variant truncate">Master Artisan</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 lg:ml-64 p-margin-mobile md:p-margin-desktop min-h-screen">
+<!-- Top Search & Utility Bar -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-stack-lg">
+<div class="relative w-full max-w-xl group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-container-low border-b border-outline-variant focus:border-primary transition-all duration-300 pl-12 pr-4 py-3 outline-none font-body-md text-on-surface rounded-t-lg" placeholder="Search orders, products, or customers..." type="text"/>
+</div>
+<div class="flex items-center gap-gutter w-full md:w-auto">
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full glass-card text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full glass-card text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-primary-fixed duration-300 active:scale-95 whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+                        Create New Order
+                    </button>
+</div>
+</header>
+<!-- Dashboard Title -->
+<div class="mb-stack-lg">
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2">Dashboard Overview</h2>
+<nav class="flex text-[12px] font-label-md text-on-surface-variant gap-2 uppercase tracking-widest">
+<a class="hover:text-primary" href="#">Home</a>
+<span>/</span>
+<span class="text-primary">Admin Analytics</span>
+</nav>
+</div>
+<!-- Metric Cards Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-stack-lg">
+<!-- Card 1 -->
+<div class="glass-card p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-24 h-24 aura-glow -translate-y-1/2 translate-x-1/2"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="text-green-400 font-label-md text-[12px] flex items-center gap-1">+12.5% <span class="material-symbols-outlined text-[14px]">trending_up</span></span>
+</div>
+<p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider mb-1">Total Revenue</p>
+<h3 class="text-headline-lg font-headline-lg text-on-surface">$14,250.00</h3>
+</div>
+<!-- Card 2 -->
+<div class="glass-card p-6 rounded-xl relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<span class="text-on-surface-variant font-label-md text-[12px]">Last 7 Days</span>
+</div>
+<p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider mb-1">Active Orders</p>
+<h3 class="text-headline-lg font-headline-lg text-on-surface">18</h3>
+</div>
+<!-- Card 3 -->
+<div class="glass-card p-6 rounded-xl relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">mark_as_unread</span>
+</div>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border border-background bg-surface-variant"></div>
+<div class="w-6 h-6 rounded-full border border-background bg-primary/20"></div>
+</div>
+</div>
+<p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider mb-1">Pending Messages</p>
+<h3 class="text-headline-lg font-headline-lg text-on-surface">7</h3>
+</div>
+<!-- Card 4 -->
+<div class="glass-card p-6 rounded-xl relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined">inventory</span>
+</div>
+<span class="text-error font-label-md text-[12px]">Action Required</span>
+</div>
+<p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider mb-1">Low Stock Items</p>
+<h3 class="text-headline-lg font-headline-lg text-on-surface">3</h3>
+</div>
+</section>
+<!-- Main Dashboard Visualization Section -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mb-stack-lg">
+<!-- Sales Performance Chart (Placeholder) -->
+<div class="lg:col-span-2 glass-card p-8 rounded-xl min-h-[400px] flex flex-col">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Sales Performance</h4>
+<p class="text-on-surface-variant font-body-md text-sm">Transactional growth over the last 30 days.</p>
+</div>
+<select class="bg-surface-container border-none text-on-surface font-label-md rounded-lg py-2 pl-4 pr-10 focus:ring-1 focus:ring-primary">
+<option>Last 30 Days</option>
+<option>Last 90 Days</option>
+<option>Year to Date</option>
+</select>
+</div>
+<div class="flex-1 w-full relative group">
+<!-- Chart Mockup with CSS -->
+<div class="absolute inset-0 flex items-end gap-2 px-2">
+<!-- Visual placeholder for a sophisticated chart -->
+<div class="flex-1 bg-primary/5 h-[30%] rounded-t-sm border-t border-primary/20 hover:bg-primary/20 transition-all duration-500"></div>
+<div class="flex-1 bg-primary/5 h-[45%] rounded-t-sm border-t border-primary/20 hover:bg-primary/20 transition-all duration-500"></div>
+<div class="flex-1 bg-primary/5 h-[40%] rounded-t-sm border-t border-primary/20 hover:bg-primary/20 transition-all duration-500"></div>
+<div class="flex-1 bg-primary/5 h-[65%] rounded-t-sm border-t border-primary/20 hover:bg-primary/20 transition-all duration-500"></div>
+<div class="flex-1 bg-primary/5 h-[55%] rounded-t-sm border-t border-primary/20 hover:bg-primary/20 transition-all duration-500"></div>
+<div class="flex-1 bg-primary/5 h-[80%] rounded-t-sm border-t border-primary/30 hover:bg-primary/30 transition-all duration-500"></div>
+<div class="flex-1 bg-primary/5 h-[75%] rounded-t-sm border-t border-primary/30 hover:bg-primary/30 transition-all duration-500"></div>
+<div class="flex-1 bg-primary/5 h-[90%] rounded-t-sm border-t border-primary/40 hover:bg-primary/40 transition-all duration-500"></div>
+</div>
+<!-- Secondary trend line -->
+<div class="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
+<svg class="w-full h-full opacity-30" viewbox="0 0 800 300">
+<path class="text-secondary" d="M0 250 Q 200 100 400 200 T 800 50" fill="none" stroke="currentColor" stroke-width="2"></path>
+<path class="text-primary" d="M0 280 Q 200 150 400 230 T 800 100" fill="none" stroke="currentColor" stroke-dasharray="8 4" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<div class="mt-4 flex justify-between text-on-surface-variant font-label-md text-[10px] uppercase tracking-tighter">
+<span>Day 01</span>
+<span>Day 07</span>
+<span>Day 14</span>
+<span>Day 21</span>
+<span>Day 30</span>
+</div>
+</div>
+<!-- Recent Activity Feed -->
+<div class="glass-card p-8 rounded-xl flex flex-col h-full">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-6">Live Events</h4>
+<div class="space-y-6 flex-1 overflow-y-auto custom-scrollbar pr-2">
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full glass-card flex items-center justify-center shrink-0 border-primary/20">
+<span class="material-symbols-outlined text-primary text-[18px]">shopping_bag</span>
+</div>
+<div>
+<p class="text-on-surface font-body-md text-sm"><span class="font-bold">Loro Beralen</span> placed a new order for "Sterling Wave Ring"</p>
+<span class="text-on-surface-variant text-[11px]">2 mins ago</span>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full glass-card flex items-center justify-center shrink-0 border-secondary/20">
+<span class="material-symbols-outlined text-secondary text-[18px]">mail</span>
+</div>
+<div>
+<p class="text-on-surface font-body-md text-sm">New inquiry regarding <span class="font-bold">Bespoke Ceramic Set</span></p>
+<span class="text-on-surface-variant text-[11px]">45 mins ago</span>
+</div>
+</div>
+<div class="flex gap-4 opacity-70">
+<div class="w-10 h-10 rounded-full glass-card flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">local_shipping</span>
+</div>
+<div>
+<p class="text-on-surface font-body-md text-sm">Order <span class="font-bold">#7821998</span> has been shipped</p>
+<span class="text-on-surface-variant text-[11px]">3 hours ago</span>
+</div>
+</div>
+</div>
+<button class="mt-6 w-full border border-outline-variant/30 py-3 rounded-lg text-on-surface-variant font-label-md hover:bg-surface-variant/20 hover:text-on-surface transition-all">View All Logs</button>
+</div>
+</section>
+<!-- Orders Management Table Section -->
+<section class="glass-card rounded-xl overflow-hidden mb-stack-lg">
+<div class="p-8 border-b border-outline-variant/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Order Management</h4>
+<p class="text-on-surface-variant font-body-md text-sm">Processing current customer transactions.</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 bg-secondary-container/30 text-primary font-label-md text-[12px] rounded-full border border-primary/20">Pending</button>
+<button class="px-4 py-2 hover:bg-surface-variant/20 text-on-surface-variant font-label-md text-[12px] rounded-full transition-all">Shipped</button>
+<button class="px-4 py-2 hover:bg-surface-variant/20 text-on-surface-variant font-label-md text-[12px] rounded-full transition-all">Delivered</button>
+<div class="h-8 w-px bg-outline-variant/30 mx-2"></div>
+<button class="flex items-center gap-2 px-4 py-2 glass-card text-on-surface-variant font-label-md text-[12px] rounded-lg">
+<span class="material-symbols-outlined text-[16px]">filter_list</span>
+                            Filter
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 glass-card text-on-surface-variant font-label-md text-[12px] rounded-lg">
+<span class="material-symbols-outlined text-[16px]">download</span>
+                            Export
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low/50 border-b border-outline-variant/10">
+<th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Order ID</th>
+<th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Customer</th>
+<th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest text-center">Date</th>
+<th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest text-center">Items</th>
+<th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest text-right">Total</th>
+<th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest text-center">Status</th>
+<th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-variant/5 transition-colors group">
+<td class="px-8 py-6">
+<span class="font-label-md text-primary group-hover:underline">#7827481</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-[12px] text-primary">LB</div>
+<span class="text-on-surface font-body-md">Loro Beralen</span>
+</div>
+</td>
+<td class="px-8 py-6 text-center text-on-surface-variant text-sm">06-21-2021</td>
+<td class="px-8 py-6 text-center">
+<span class="px-2 py-1 bg-surface-container rounded text-on-surface-variant text-[11px]">1</span>
+</td>
+<td class="px-8 py-6 text-right font-label-md text-on-surface">$150.00</td>
+<td class="px-8 py-6 text-center">
+<span class="px-3 py-1 bg-green-500/10 text-green-400 border border-green-500/20 rounded-full text-[10px] font-bold uppercase tracking-widest">Delivered</span>
+</td>
+<td class="px-8 py-6 text-right">
+<div class="flex justify-end gap-3 text-on-surface-variant">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">print</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-variant/5 transition-colors group">
+<td class="px-8 py-6">
+<span class="font-label-md text-primary group-hover:underline">#7821998</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-[12px] text-secondary">BH</div>
+<span class="text-on-surface font-body-md">Bonk Havston</span>
+</div>
+</td>
+<td class="px-8 py-6 text-center text-on-surface-variant text-sm">06-21-2021</td>
+<td class="px-8 py-6 text-center">
+<span class="px-2 py-1 bg-surface-container rounded text-on-surface-variant text-[11px]">2</span>
+</td>
+<td class="px-8 py-6 text-right font-label-md text-on-surface">$190.00</td>
+<td class="px-8 py-6 text-center">
+<span class="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-[10px] font-bold uppercase tracking-widest">Pending</span>
+</td>
+<td class="px-8 py-6 text-right">
+<div class="flex justify-end gap-3 text-on-surface-variant">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">print</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-variant/5 transition-colors group">
+<td class="px-8 py-6">
+<span class="font-label-md text-primary group-hover:underline">#7827986</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-[12px] text-tertiary">SR</div>
+<span class="text-on-surface font-body-md">Sterling Wave Ring</span>
+</div>
+</td>
+<td class="px-8 py-6 text-center text-on-surface-variant text-sm">06-22-2021</td>
+<td class="px-8 py-6 text-center">
+<span class="px-2 py-1 bg-surface-container rounded text-on-surface-variant text-[11px]">1</span>
+</td>
+<td class="px-8 py-6 text-right font-label-md text-on-surface">$160.00</td>
+<td class="px-8 py-6 text-center">
+<span class="px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full text-[10px] font-bold uppercase tracking-widest">Shipped</span>
+</td>
+<td class="px-8 py-6 text-right">
+<div class="flex justify-end gap-3 text-on-surface-variant">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">print</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Pagination -->
+<div class="p-8 bg-surface-container-lowest/30 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-on-surface-variant text-[12px] font-label-md">Showing 1 to 3 of 48 entries</p>
+<div class="flex items-center gap-1">
+<button class="w-10 h-10 flex items-center justify-center glass-card rounded-lg text-on-surface-variant disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded-lg font-label-md">1</button>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-variant/20 text-on-surface-variant rounded-lg font-label-md transition-all">2</button>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-variant/20 text-on-surface-variant rounded-lg font-label-md transition-all">3</button>
+<button class="w-10 h-10 flex items-center justify-center glass-card rounded-lg text-on-surface-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Bottom Brand Footer -->
+<footer class="w-full py-12 flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-outline-variant/10">
+<div class="flex items-center gap-2">
+<span class="text-primary font-headline-md text-headline-md">ArtisanCrafted</span>
+<span class="text-on-surface-variant font-label-md text-[12px] border-l border-outline-variant/30 pl-2">Master Admin Suite v2.4</span>
+</div>
+<div class="flex gap-8">
+<a class="text-on-surface-variant hover:text-primary font-body-md text-sm transition-colors" href="#">About Us</a>
+<a class="text-on-surface-variant hover:text-primary font-body-md text-sm transition-colors" href="#">Contact</a>
+<a class="text-on-surface-variant hover:text-primary font-body-md text-sm transition-colors" href="#">FAQs</a>
+<a class="text-on-surface-variant hover:text-primary font-body-md text-sm transition-colors" href="#">Shipping</a>
+</div>
+<p class="text-on-surface-variant font-body-md text-sm">© 2024 ArtisanCrafted. All rights reserved.</p>
+</footer>
+</main>
+</div>
+<!-- Floating Action Button (Mobile Context Only) -->
+<button class="lg:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center z-50 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+<script>
+        // Micro-interaction for sidebar tabs
+        const navLinks = document.querySelectorAll('aside nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                navLinks.forEach(l => {
+                    l.classList.remove('bg-secondary-container/30', 'text-primary', 'border-l-4', 'border-primary', 'translate-x-1');
+                    l.classList.add('text-on-surface-variant', 'hover:bg-surface-variant/20');
+                });
+                link.classList.add('bg-secondary-container/30', 'text-primary', 'border-l-4', 'border-primary', 'translate-x-1');
+                link.classList.remove('text-on-surface-variant', 'hover:bg-surface-variant/20');
+            });
+        });
+
+        // Simple hover effect for glass cards to follow cursor (aura simulation)
+        const cards = document.querySelectorAll('.glass-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,132 @@
+<%- include('partials/header', { title: 'Your Collection' }) %>
+
+<main class="pt-28 px-margin-mobile md:px-margin-desktop pb-12 relative z-10">
+<div class="max-w-container-max mx-auto">
+  <header class="mb-stack-md flex flex-col gap-2">
+    <h1 class="font-display-lg text-display-lg champagne-accent">Your Collection</h1>
+    <p class="font-body-md text-body-md text-on-surface-variant">A curated selection of your most desired artifacts.</p>
+  </header>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+    <section id="cart-items" class="lg:col-span-8 flex flex-col gap-stack-sm">
+      <p class="text-on-surface-variant text-center py-12">Loading cart...</p>
+    </section>
+
+    <aside class="lg:col-span-4 lg:sticky lg:top-32">
+      <div class="glass-card p-6 md:p-8 flex flex-col gap-6 relative">
+        <h2 class="font-headline-md text-headline-md champagne-accent">Summary</h2>
+        <div class="space-y-4 border-b border-outline-variant/20 pb-6">
+          <div class="flex justify-between items-center font-body-md text-body-md">
+            <span class="text-on-surface-variant">Subtotal</span>
+            <span id="cart-subtotal" class="text-on-surface">$0.00</span>
+          </div>
+          <div class="flex justify-between items-center font-body-md text-body-md">
+            <span class="text-on-surface-variant">Shipping</span>
+            <span class="text-on-surface">$25.00</span>
+          </div>
+          <div class="flex justify-between items-center font-body-md text-body-md">
+            <span class="text-on-surface-variant">Tax</span>
+            <span id="cart-tax" class="text-on-surface">$0.00</span>
+          </div>
+        </div>
+        <div class="flex justify-between items-center mb-2">
+          <span class="font-headline-md text-headline-md text-primary">Total</span>
+          <span id="cart-total" class="font-headline-md text-headline-md champagne-accent">$0.00</span>
+        </div>
+        <div class="space-y-4 mt-2">
+          <a href="/checkout" class="w-full bg-primary-container text-on-primary-container py-4 px-6 rounded-lg font-label-md text-label-md font-bold uppercase tracking-widest transition-all duration-300 primary-glow-button hover:scale-[1.02] active:scale-95 text-center block">
+            Proceed to Checkout
+          </a>
+          <p class="text-[11px] text-on-surface-variant text-center uppercase tracking-tighter opacity-60">
+            Secure Encrypted Checkout &bull; Free Global Shipping on Orders over $1,500
+          </p>
+        </div>
+        <div class="mt-8 pt-6 border-t border-outline-variant/20">
+          <p class="font-label-md text-label-md text-primary mb-4">Promotional Code</p>
+          <div class="flex gap-2">
+            <input class="flex-grow bg-surface-container-highest/30 border-0 border-b border-outline-variant/50 focus:border-primary focus:ring-0 text-on-surface placeholder:text-outline-variant text-sm py-2 px-0 transition-all" placeholder="Enter code" type="text"/>
+            <button class="font-label-md text-label-md text-primary hover:text-secondary transition-colors uppercase">Apply</button>
+          </div>
+        </div>
+      </div>
+      <div class="mt-6 flex flex-wrap justify-center gap-6 grayscale opacity-40">
+        <span class="material-symbols-outlined text-4xl">verified_user</span>
+        <span class="material-symbols-outlined text-4xl">local_shipping</span>
+        <span class="material-symbols-outlined text-4xl">eco</span>
+        <span class="material-symbols-outlined text-4xl">diamond</span>
+      </div>
+    </aside>
+  </div>
+</div>
+</main>
+
+<script>
+  async function loadCart() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      document.getElementById('cart-items').innerHTML = '<p class="text-on-surface-variant text-center py-12">Please <a href="/login" class="text-primary hover:underline">sign in</a> to view your cart.</p>';
+      return;
+    }
+    try {
+      const res = await fetch('/api/cart', { headers: { 'Authorization': 'Bearer ' + token } });
+      const cart = await res.json();
+      if (!cart.length) {
+        document.getElementById('cart-items').innerHTML = '<p class="text-on-surface-variant text-center py-12">Your collection is empty. <a href="/catalog" class="text-primary hover:underline">Browse collections</a>.</p>';
+        return;
+      }
+      let subtotal = 0;
+      const itemsHtml = cart.map(item => {
+        const p = item.product;
+        if (!p || !p.title) return '';
+        const pid = p.id || p._id || item.product;
+        const total = (p.price || 0) * (item.quantity || 1);
+        subtotal += total;
+        return `
+          <div class="glass-card p-6 flex flex-col md:flex-row gap-6 group relative overflow-hidden transition-all duration-300 hover:bg-surface-container-low/40">
+            <div class="w-full md:w-40 h-40 flex-shrink-0 bg-surface-container-highest overflow-hidden rounded-lg">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${p.image || ''}" alt="${p.title}"/>
+            </div>
+            <div class="flex-grow flex flex-col justify-between">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="font-headline-md text-headline-md text-primary mb-1">${p.title}</h3>
+                  <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">${item.selectedVariant || ''}</p>
+                </div>
+                <button onclick="removeItem(${pid}, '${item.selectedVariant || ''}')" class="material-symbols-outlined text-outline hover:text-error transition-colors p-2">delete</button>
+              </div>
+              <div class="flex items-end justify-between mt-6">
+                <div class="flex items-center bg-surface-container-highest/50 rounded-full border border-outline-variant/20 p-1">
+                  <span class="px-4 font-label-md text-label-md font-bold">${item.quantity || 1}</span>
+                </div>
+                <div class="text-right">
+                  <p class="font-headline-md text-headline-md champagne-accent">$${total.toFixed(2)}</p>
+                </div>
+              </div>
+            </div>
+          </div>`;
+      }).join('');
+      document.getElementById('cart-items').innerHTML = itemsHtml;
+      const tax = subtotal * 0.08;
+      document.getElementById('cart-subtotal').textContent = '$' + subtotal.toFixed(2);
+      document.getElementById('cart-tax').textContent = '$' + tax.toFixed(2);
+      document.getElementById('cart-total').textContent = '$' + (subtotal + 25 + tax).toFixed(2);
+    } catch (e) {
+      document.getElementById('cart-items').innerHTML = '<p class="text-on-surface-variant text-center py-12">Error loading cart.</p>';
+    }
+  }
+
+  async function removeItem(productId, selectedVariant) {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+    await fetch('/api/cart/' + productId, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({ selectedVariant })
+    });
+    loadCart();
+  }
+
+  loadCart();
+</script>
+
+<%- include('partials/footer') %>

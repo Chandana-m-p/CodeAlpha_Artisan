@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ArtisanCrafted | The Collections</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"secondary-container": "#a300d3", "surface-container": "#251b31", "on-error": "#690005", "tertiary-fixed-dim": "#cdc2dd", "secondary-fixed": "#fad7ff", "on-primary-container": "#5f3370", "tertiary-fixed": "#e9def9", outline: "#99907c", "tertiary-container": "#b8aec8", "primary-fixed": "#f9d8ff", "on-error-container": "#ffdad6", "surface-container-lowest": "#13091e", surface: "#190f24", primary: "#f0bcff", "on-secondary-container": "#f9d4ff", "on-tertiary-container": "#494157", "surface-container-low": "#21172c", "surface-container-highest": "#3b3047", "on-tertiary-fixed": "#1e182c", "on-secondary-fixed-variant": "#77009a", "on-primary-fixed-variant": "#613472", "on-tertiary": "#342d42", "on-secondary": "#54006e", "primary-fixed-dim": "#eab3fa", "inverse-surface": "#eedcfa", "surface-bright": "#40344c", "on-tertiary-fixed-variant": "#4b4359", background: "#190f24", "inverse-primary": "#7b4c8b", secondary: "#efb0ff", tertiary: "#d4cae5", "outline-variant": "#4d4635", "on-primary-fixed": "#310343", "on-surface-variant": "#d0c5af", "primary-container": "#d5a0e5", "secondary-fixed-dim": "#efb0ff", "surface-variant": "#3b3047", "surface-dim": "#190f24", "error-container": "#93000a", "inverse-on-surface": "#372c42", "on-secondary-fixed": "#330044", error: "#ffb4ab", "on-primary": "#481d59", "on-surface": "#eedcfa", "on-background": "#eedcfa", "surface-tint": "#eab3fa", "surface-container-high": "#30253c"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {"margin-mobile": "1rem", "container-max": "1280px", "margin-desktop": "2.5rem", "stack-md": "1.5rem", "stack-lg": "3rem", gutter: "1.5rem", "stack-sm": "0.5rem"}, fontFamily: {"headline-md": ["Playfair Display"], "label-md": ["Manrope"], "display-lg": ["Playfair Display"], "body-lg": ["Manrope"], "headline-lg": ["Playfair Display"], "body-md": ["Manrope"], headline: ["Playfair Display"], display: ["Playfair Display"], body: ["Manrope"], label: ["Manrope"]}, fontSize: {"headline-md": ["24px", {lineHeight: "1.4", fontWeight: "500"}], "label-md": ["14px", {lineHeight: "1", letterSpacing: "0.05em", fontWeight: "600"}], "display-lg": ["48px", {lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "1.6", fontWeight: "400"}], "headline-lg": ["32px", {lineHeight: "1.3", fontWeight: "500"}], "body-md": ["16px", {lineHeight: "1.6", fontWeight: "400"}]}}}};</script>
+<style>
+        body {
+            background-color: #190f24;
+            color: #eedcfa;
+            scroll-behavior: smooth;
+        }
+
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .liquid-glass:hover {
+            border-color: rgba(242, 202, 80, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .aura-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, rgba(26, 16, 37, 0) 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+        }
+
+        .search-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #f2ca50;
+            box-shadow: none;
+        }
+
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .dropdown-active .dropdown-content {
+            max-height: 500px;
+        }
+
+        .dropdown-active .chevron {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- Header / TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 bg-surface/40 backdrop-blur-md border-b border-outline-variant/20">
+<div class="flex items-center gap-12">
+<a class="text-2xl font-headline-lg font-bold text-primary" href="#">VM</a>
+<nav class="hidden lg:flex items-center gap-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Our Heritage</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">The Collections</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">The Experience</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Bespoke</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Journal</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2 text-on-surface-variant">search</span>
+<input class="search-input pl-10 pr-4 py-2 text-sm w-64 text-on-surface" placeholder="Search our archives..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-primary text-on-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
+</button>
+</div>
+</header>
+<main class="pt-32 pb-stack-lg max-w-[1440px] mx-auto px-margin-desktop min-h-screen">
+<div class="mb-stack-lg">
+<nav class="flex text-sm text-on-surface-variant/60 gap-2 mb-4">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span>/</span>
+<a class="hover:text-primary transition-colors" href="#">Collections</a>
+<span>/</span>
+<span class="text-on-surface">Curated Goods</span>
+</nav>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-2">Exquisite Collections</h1>
+<p class="text-on-surface-variant max-w-xl font-body-lg text-body-lg">Discover pieces that bridge the gap between historical heritage and contemporary luxury.</p>
+</div>
+<div class="flex flex-col lg:flex-row gap-gutter">
+<!-- Sidebar Filters -->
+<aside class="w-full lg:w-72 shrink-0 space-y-4">
+<div class="dropdown-active group">
+<button class="w-full liquid-glass rounded-lg px-5 py-4 flex justify-between items-center group-hover:border-primary/50 transition-colors" onclick="toggleDropdown(this)">
+<span class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Category</span>
+<span class="material-symbols-outlined text-primary chevron transition-transform duration-300">expand_more</span>
+</button>
+<div class="dropdown-content mt-2 liquid-glass rounded-lg">
+<div class="p-4 space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="w-4 h-4 bg-surface rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Fine Jewelry</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="w-4 h-4 bg-surface rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Ceramics</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="w-4 h-4 bg-surface rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Leather Goods</span>
+</label>
+</div>
+</div>
+</div>
+<div class="group">
+<button class="w-full liquid-glass rounded-lg px-5 py-4 flex justify-between items-center group-hover:border-primary/50 transition-colors" onclick="toggleDropdown(this)">
+<span class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Price Range</span>
+<span class="material-symbols-outlined text-primary chevron transition-transform duration-300">expand_more</span>
+</button>
+<div class="dropdown-content mt-2 liquid-glass rounded-lg">
+<div class="p-4 space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="w-4 h-4 bg-surface border-outline-variant text-primary focus:ring-primary/20" name="price" type="radio"/>
+<span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Under $100</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="w-4 h-4 bg-surface border-outline-variant text-primary focus:ring-primary/20" name="price" type="radio"/>
+<span class="text-on-surface-variant group-hover/item:text-primary transition-colors">$100 - $500</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="w-4 h-4 bg-surface border-outline-variant text-primary focus:ring-primary/20" name="price" type="radio"/>
+<span class="text-on-surface-variant group-hover/item:text-primary transition-colors">$500+</span>
+</label>
+</div>
+</div>
+</div>
+<div class="group">
+<button class="w-full liquid-glass rounded-lg px-5 py-4 flex justify-between items-center group-hover:border-primary/50 transition-colors" onclick="toggleDropdown(this)">
+<span class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Material</span>
+<span class="material-symbols-outlined text-primary chevron transition-transform duration-300">expand_more</span>
+</button>
+<div class="dropdown-content mt-2 liquid-glass rounded-lg">
+<div class="p-4 space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="w-4 h-4 bg-surface rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Sterling Silver</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="w-4 h-4 bg-surface rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Full Grain Leather</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="w-4 h-4 bg-surface rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Gold Plated</span>
+</label>
+</div>
+</div>
+</div>
+<div class="group">
+<button class="w-full liquid-glass rounded-lg px-5 py-4 flex justify-between items-center group-hover:border-primary/50 transition-colors" onclick="toggleDropdown(this)">
+<span class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Occasion</span>
+<span class="material-symbols-outlined text-primary chevron transition-transform duration-300">expand_more</span>
+</button>
+<div class="dropdown-content mt-2 liquid-glass rounded-lg">
+<div class="p-4 space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="w-4 h-4 bg-surface rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Wedding</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group/item">
+<input class="w-4 h-4 bg-surface rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+<span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Gift</span>
+</label>
+</div>
+</div>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="flex-1">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- Product 1 -->
+<div class="liquid-glass rounded-xl overflow-hidden flex flex-col relative group">
+<div class="aura-glow"></div>
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A macro photograph of a polished sterling silver wave ring with intricate ripples, resting on a soft velvet dark violet surface. The lighting is cinematic with golden champagne highlights reflecting off the metallic curves, emphasizing the luxurious and melancholic chic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5_-KRkmsP5yDEVsze6241DHQlkJ_rOe0VHVHKQnDyPnSDsfKWhAvV1SS5wJalPyXpuEfWGfr6jSDr346VvlXBezmvaUs1RzZTo_1GLCi-xkUEhMxRjxbapY-H0VNaHP81xr65vd3anHaRatgrcpvgd8ee7a4RJq8XSZQ_0RnQLdA1eXkd49JMnYzu4xaVHEUd3qb5PHmBIyIefXxCuJsN9I8nOHswtAwfuqLhS6UOTREKTjPJOvW9yQ"/>
+<button class="absolute top-4 right-4 bg-surface/80 p-2 rounded-full backdrop-blur hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Silver Wave Ring</h3>
+<span class="text-primary font-bold">$75</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-4 line-clamp-2">Minimalist design inspired by the rhythmic currents of the North Sea.</p>
+<div class="mt-auto flex justify-between items-center">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 0;">star</span>
+<span class="text-on-surface-variant text-xs ml-1">(48)</span>
+</div>
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-full font-label-md text-xs hover:bg-primary-fixed-dim transition-colors">Explore</button>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="liquid-glass rounded-xl overflow-hidden flex flex-col relative group">
+<div class="aura-glow"></div>
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A hand-thrown ceramic mug in a deep matte navy blue finish, positioned on a rustic dark wood table. Atmospheric lighting creates soft shadows in a moody, elegant room, with a warm golden glow from a distant light source touching the rim of the mug. The scene feels serene and exclusive." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4Vwt8CkDdVety0zvFjlitzst9YEWNOP7u9RkL6tKAnDYTdFa6MTTzcM1yRhb6PVnfN04zUrynUQkeNZrKSsS4wim71tj341b503urhOL_WT1h-C0IpIHTs3sipQoRd0So2DYVlZ3YMYaDLFOuFyy3LKSgDaujbDFaSd5aDcUf14K7W0Q3DCwvBB7sKzJQ_eRS-rYk10eqM5mcTLsmFOOIajdye3DwdtZ1nuscTIhziWYLFHY2ot__9w"/>
+<button class="absolute top-4 right-4 bg-surface/80 p-2 rounded-full backdrop-blur hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Ceramic Vessel</h3>
+<span class="text-primary font-bold">$55</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-4 line-clamp-2">Hand-thrown matte finish vessel designed for sensory focus.</p>
+<div class="mt-auto flex justify-between items-center">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 0.5;">star_half</span>
+<span class="text-on-surface-variant text-xs ml-1">(34)</span>
+</div>
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-full font-label-md text-xs hover:bg-primary-fixed-dim transition-colors">Explore</button>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="liquid-glass rounded-xl overflow-hidden flex flex-col relative group">
+<div class="aura-glow"></div>
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="An ornate boho beaded necklace featuring turquoise stones and gold-tone spacers, elegantly draped over a textured limestone base. The background is a moody, dark royal violet with soft ethereal lighting. The composition is artistic and high-end, evoking a sense of quiet luxury and artisanal craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrW98SE-H9C-8bEjG656Bqvo_k4utMYBRwtuycnbCNaGW5H5D8HqimtBNDf-4Aq9HbPqlg7lfvY1AjVMogwmzZOQIdQdyYIxymtasiqn3VXTBnC5Knck2vm_Pdoz0u1e34Yrd2QgfPP18vU44RZnQEmKfRu4gFDIsWO6Iww1f4DVAz1XzqzkRsa4PYjYci3hEsDq_64upMGtG8HetmWkJoQ-ESjfgFoXaDYm1JfMPiAhVlfw8b5WwDKA"/>
+<button class="absolute top-4 right-4 bg-surface/80 p-2 rounded-full backdrop-blur hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Turquoise Strand</h3>
+<span class="text-primary font-bold">$120</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-4 line-clamp-2">Reclaimed beads woven with fine gold silk thread.</p>
+<div class="mt-auto flex justify-between items-center">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-on-surface-variant text-xs ml-1">(102)</span>
+</div>
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-full font-label-md text-xs hover:bg-primary-fixed-dim transition-colors">Explore</button>
+</div>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="liquid-glass rounded-xl overflow-hidden flex flex-col relative group">
+<div class="aura-glow"></div>
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Close-up of a weathered, hand-stitched leather journal in dark mahogany brown. The leather shows beautiful grain and character, bound by a simple leather cord. It is placed in a dimly lit library setting with golden champagne aura glows in the background. The visual is somber, professional, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHeHCEPpW5fmNwIzr8mcMSlf42AMSYdQ0iukvYEdZnIr4rFzVpH_kqH_sm5eaOaGZGDsNKMLQbldGeMviXBgJ8PtRo2IBZ3TmNJ4IFlCqJqiBCC4Dj7pSs3j4oivSatFlxOY8RSkChtxmNuJlqh23-XFysZ0FeBjc411gOISOYkTjerToZls5K3MvQL3oSoY-YsTUI2NoRpST_6AxAtflBcEW6ClCU53plGxolPdtcZ1Fyu6Db5wRARA"/>
+<button class="absolute top-4 right-4 bg-surface/80 p-2 rounded-full backdrop-blur hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Artisan Journal</h3>
+<span class="text-primary font-bold">$95</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-4 line-clamp-2">Full-grain leather with hand-bound archival parchment.</p>
+<div class="mt-auto flex justify-between items-center">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-on-surface-variant text-xs ml-1">(57)</span>
+</div>
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-full font-label-md text-xs hover:bg-primary-fixed-dim transition-colors">Explore</button>
+</div>
+</div>
+</div>
+<!-- Product 5 -->
+<div class="liquid-glass rounded-xl overflow-hidden flex flex-col relative group">
+<div class="aura-glow"></div>
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A set of handcrafted brass bookmarks with delicate botanical etchings, resting on an open vintage book. The scene is illuminated by soft, moody light, catching the metallic sheen of the champagne-colored brass. Deep violet shadows provide contrast, creating a refined and academic atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsHZjHdbRsxGILqoT5KmLg3eDdLSDaILXL_Y9StKzsE5CBxlxJ1OzYSYjvq837m3Onts5jCSmLhnTNMSKM6RulvUtEqdi_huZH8VHV26iAFajU_wP_mKLDmgeb6gWtb0lgtUeQoGQK8RVTqtTADik-c8m_M_pPzV7ns8aLe4q1xGN5LZpu-s38zJ0zCQbiUCMd-xCmi10Rh9FhwaRn__4v0T9q4mztz8AVhga1IfIAxgx3S0lPcWyLXA"/>
+<button class="absolute top-4 right-4 bg-surface/80 p-2 rounded-full backdrop-blur hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Botanical Brass</h3>
+<span class="text-primary font-bold">$40</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-4 line-clamp-2">Set of three hand-etched markers for the modern archivist.</p>
+<div class="mt-auto flex justify-between items-center">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 0;">star</span>
+<span class="text-on-surface-variant text-xs ml-1">(21)</span>
+</div>
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-full font-label-md text-xs hover:bg-primary-fixed-dim transition-colors">Explore</button>
+</div>
+</div>
+</div>
+<!-- Product 6 -->
+<div class="liquid-glass rounded-xl overflow-hidden flex flex-col relative group">
+<div class="aura-glow"></div>
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="An ethereal crystal incense burner carved from translucent rose quartz, sitting on a mirrored tray. Wisps of thin white smoke curl upwards in a dark, atmospheric setting. Subtle golden reflections and deep violet background elements reinforce a sense of exclusive wellness and serene luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhACiUhTPqr1-zZ1elRFPiNUB4j0qq90Zeu7zh5BPNtmWm7nvBLtSyNifGJd1I5LhLiCdFmLOHjb4VLn0pKIkK9cyOiEpgy-cGxCen15UuUy5pjH1WTxEorB5ekaT8A8pTom1qupelpW2dk4vmx6OJi2JcRWMIdGFZG9gXqk6AE3K1iO9eK3_ir8cTrsB5RBJ38FVEfkZFwq_XBRnaWPW2zw9CuHAzXMVtoq4QKqtKilJC9L6M0b3SlA"/>
+<button class="absolute top-4 right-4 bg-surface/80 p-2 rounded-full backdrop-blur hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Quartz Burner</h3>
+<span class="text-primary font-bold">$185</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-4 line-clamp-2">Hand-carved rose quartz sculptural piece for aromatics.</p>
+<div class="mt-auto flex justify-between items-center">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-on-surface-variant text-xs ml-1">(12)</span>
+</div>
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-full font-label-md text-xs hover:bg-primary-fixed-dim transition-colors">Explore</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<nav class="mt-stack-lg flex justify-center items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center liquid-glass rounded-full text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-on-primary font-bold" href="#">1</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full liquid-glass text-on-surface hover:border-primary transition-colors" href="#">2</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full liquid-glass text-on-surface hover:border-primary transition-colors" href="#">3</a>
+<button class="w-10 h-10 flex items-center justify-center liquid-glass rounded-full text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-container-lowest border-t border-outline-variant/20">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="text-headline-md font-headline-md text-primary">VM</span>
+<p class="font-body-md text-body-md text-on-surface-variant/70 text-center md:text-left">© 2024 ArtisanCrafted. All rights reserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">About Us</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Contact</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">FAQs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Shipping</a>
+</div>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-opacity hover:opacity-80" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+<a class="text-on-surface-variant hover:text-primary transition-opacity hover:opacity-80" href="#">
+<span class="material-symbols-outlined">mail</span>
+</a>
+</div>
+</footer>
+<script>
+        function toggleDropdown(button) {
+            const parent = button.closest('.group');
+            parent.classList.toggle('dropdown-active');
+            
+            // Close others if desired
+            const allDropdowns = document.querySelectorAll('.dropdown-active');
+            allDropdowns.forEach(dd => {
+                if (dd !== parent) {
+                    dd.classList.remove('dropdown-active');
+                }
+            });
+        }
+
+        // Search focus interaction
+        const searchInput = document.querySelector('.search-input');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-105');
+            searchInput.parentElement.style.transition = 'all 0.3s ease';
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-105');
+        });
+
+        // Hover aura logic (simplified JS addition)
+        document.querySelectorAll('.liquid-glass').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

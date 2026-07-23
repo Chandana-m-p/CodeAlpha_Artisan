@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %> | ArtisanCrafted</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#190f24", "surface-dim": "#190f24", "surface-bright": "#40344c",
+            "surface-container-lowest": "#13091e", "surface-container-low": "#21172c",
+            "surface-container": "#251b31", "surface-container-high": "#30253c",
+            "surface-container-highest": "#3b3047", "surface-variant": "#3b3047",
+            "on-surface": "#eedcfa", "on-surface-variant": "#cfc3cf",
+            "on-background": "#eedcfa", "background": "#190f24",
+            "primary": "#f8d5ff", "on-primary": "#481d59",
+            "primary-container": "#e8b1f8", "on-primary-container": "#6c3f7d",
+            "primary-fixed": "#f9d8ff", "primary-fixed-dim": "#eab3fa",
+            "on-primary-fixed": "#310343", "on-primary-fixed-variant": "#613472",
+            "inverse-primary": "#7b4c8b", "surface-tint": "#eab3fa",
+            "secondary": "#efb0ff", "on-secondary": "#54006e",
+            "secondary-container": "#a300d3", "on-secondary-container": "#f9d4ff",
+            "secondary-fixed": "#fad7ff", "secondary-fixed-dim": "#efb0ff",
+            "on-secondary-fixed": "#330044", "on-secondary-fixed-variant": "#77009a",
+            "tertiary": "#e7dcf7", "on-tertiary": "#342d42",
+            "tertiary-container": "#cbc0db", "on-tertiary-container": "#554e64",
+            "tertiary-fixed": "#e9def9", "tertiary-fixed-dim": "#cdc2dd",
+            "on-tertiary-fixed": "#1e182c", "on-tertiary-fixed-variant": "#4b4359",
+            "error": "#ffb4ab", "on-error": "#690005",
+            "error-container": "#93000a", "on-error-container": "#ffdad6",
+            "outline": "#988d98", "outline-variant": "#4d444e",
+            "inverse-surface": "#eedcfa", "inverse-on-surface": "#372c42",
+            "gold-accent": "#D4AF37"
+          },
+          borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+          spacing: { "stack-sm": "0.5rem", "stack-md": "1.5rem", "stack-lg": "3rem", "gutter": "1.5rem", "container-max": "1280px", "margin-mobile": "1rem", "margin-desktop": "2.5rem" },
+          fontFamily: { "display-lg": ["Playfair Display"], "headline-lg": ["Playfair Display"], "headline-md": ["Playfair Display"], "body-lg": ["Manrope"], "body-md": ["Manrope"], "label-md": ["Manrope"] },
+          fontSize: {
+            "display-lg": ["48px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "600" }],
+            "headline-lg": ["32px", { lineHeight: "1.3", fontWeight: "500" }],
+            "headline-md": ["24px", { lineHeight: "1.4", fontWeight: "500" }],
+            "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+            "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+            "label-md": ["14px", { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "600" }]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #190f24; color: #eedcfa; font-family: 'Manrope', sans-serif; overflow-x: hidden; }
+    .liquid-glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+    .glass-card { background: rgba(255,255,255,0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+    .aura-glow { background: radial-gradient(circle, rgba(232,177,248,0.12) 0%, rgba(26,16,37,0) 70%); }
+    .btn-primary { background: #f8d5ff; color: #481d59; }
+    .btn-secondary { background: rgba(255,255,255,0.08); color: #eedcfa; border: 1px solid rgba(255,255,255,0.14); }
+    .champagne-accent { color: #D4AF37; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+    .input-elegant { background: rgba(255,255,255,0.03); border: none; border-bottom: 1px solid rgba(207,195,207,0.2); transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
+    .input-elegant:focus { outline: none; border-bottom-color: #e8b1f8; background: rgba(232,177,248,0.05); }
+    .primary-glow:hover { box-shadow: 0 0 20px rgba(232,177,248,0.4); }
+    .primary-glow-button { box-shadow: 0 0 20px rgba(232,177,248,0.3); transition: all 0.3s ease; }
+    .primary-glow-button:hover { box-shadow: 0 0 30px rgba(232,177,248,0.5); transform: translateY(-1px); }
+    .btn-authorize { background: linear-gradient(135deg, #e8b1f8 0%, #a300d3 100%); box-shadow: 0 0 20px rgba(163,0,211,0.4); transition: transform 0.2s, box-shadow 0.3s; }
+    .btn-authorize:hover { transform: translateY(-1px); box-shadow: 0 0 30px rgba(163,0,211,0.6); }
+    .floating { animation: float 6s ease-in-out infinite; }
+    @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+    @keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes reverse-orbit { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+    .checkmark-circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-width: 2; stroke-miterlimit: 10; stroke: #e8b1f8; fill: none; animation: stroke 0.6s cubic-bezier(0.65,0,0.45,1) forwards; }
+    .checkmark-check { transform-origin: 50% 50%; stroke-dasharray: 48; stroke-dashoffset: 48; animation: stroke 0.3s cubic-bezier(0.65,0,0.45,1) 0.8s forwards; }
+    @keyframes stroke { 100% { stroke-dashoffset: 0; } }
+    .champagne-gold { color: #F1E5AC; text-shadow: 0 0 15px rgba(241,229,172,0.3); }
+    .subtle-pulse { animation: aura-pulse 4s infinite ease-in-out; }
+    @keyframes aura-pulse { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.1); } }
+    .dropdown-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+    .dropdown-active .dropdown-content { max-height: 500px; }
+    .dropdown-active .chevron { transform: rotate(180deg); }
+  </style>
+</head>
+<body class="min-h-screen">
+  <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 bg-surface/40 backdrop-blur-md border-b border-outline-variant/20">
+    <div class="flex items-center gap-12">
+      <a href="/" class="text-2xl font-headline-lg font-bold text-primary tracking-tighter">ArtisanCrafted</a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="/" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">Home</a>
+        <a href="/catalog" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">The Collections</a>
+        <a href="/cart" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">Cart</a>
+        <a href="/account" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">Account</a>
+        <a href="/admin" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">Admin</a>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="/login" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">Sign In</a>
+      <a href="/register" class="bg-primary-container text-on-primary-container px-4 py-2 rounded-full font-label-md text-[12px] hover:scale-105 transition-transform">Register</a>
+      <a href="/cart" class="relative text-on-surface-variant hover:text-primary transition-colors">
+        <span class="material-symbols-outlined">shopping_bag</span>
+      </a>
+    </div>
+  </nav>

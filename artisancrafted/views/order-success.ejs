@@ -1,0 +1,63 @@
+<%- include('partials/header', { title: 'Order Confirmed' }) %>
+
+<main class="flex items-center justify-center min-h-[70vh] relative px-margin-mobile">
+  <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] aura-glow subtle-pulse"></div>
+  <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] aura-glow subtle-pulse" style="animation-delay: -2s;"></div>
+
+  <div class="max-w-2xl w-full z-10">
+    <div class="glass-card rounded-xl p-8 md:p-12 text-center shadow-2xl relative overflow-hidden">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 aura-glow opacity-30 -z-10"></div>
+
+      <!-- Animated Checkmark -->
+      <div class="flex justify-center mb-8">
+        <svg class="w-24 h-24" viewBox="0 0 52 52">
+          <circle class="checkmark-circle" cx="26" cy="26" fill="none" r="25"></circle>
+          <path class="checkmark-check" d="M14.1 27.2l7.1 7.2 16.7-16.8" fill="none" stroke="#e8b1f8" stroke-linecap="round" stroke-width="3"></path>
+        </svg>
+      </div>
+
+      <h1 class="font-display-lg text-display-lg champagne-gold mb-4 tracking-tight">Acquisition Confirmed</h1>
+      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-md mx-auto mb-12">
+        Your artifact is now being prepared in our studio. A confirmation has been dispatched to your email.
+      </p>
+
+      <!-- Order Details Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-12 text-left border-y border-white/10 py-8">
+        <div class="flex flex-col gap-1">
+          <span class="font-label-md text-label-md text-primary uppercase tracking-widest opacity-70">Status</span>
+          <span class="font-headline-md text-headline-md text-on-surface">Preparing</span>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="font-label-md text-label-md text-primary uppercase tracking-widest opacity-70">Delivery Window</span>
+          <span class="font-headline-md text-headline-md text-on-surface">3-5 Days</span>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="font-label-md text-label-md text-primary uppercase tracking-widest opacity-70">Shipping</span>
+          <span class="font-headline-md text-headline-md text-on-surface">Insured Courier</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/account" class="bg-primary-container text-on-primary px-8 py-4 rounded-full font-label-md text-label-md hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(232,177,248,0.3)] flex items-center justify-center gap-2">
+          View Order History
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </a>
+        <a href="/catalog" class="bg-white/10 backdrop-blur-md border border-white/20 text-on-surface px-8 py-4 rounded-full font-label-md text-label-md hover:bg-white/20 transition-all duration-300 text-center">
+          Return to Collections
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center text-on-surface-variant opacity-60 flex flex-col gap-2">
+      <p class="font-body-md text-body-md">Need assistance with your acquisition?</p>
+      <div class="flex justify-center gap-6">
+        <a class="font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1" href="#">
+          <span class="material-symbols-outlined text-[16px]">support_agent</span> Contact Concierge
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer') %>

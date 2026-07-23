@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ArtisanCrafted | Velvet Melancholy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"secondary-container": "#a300d3", "surface-container": "#251b31", "on-error": "#690005", "tertiary-fixed-dim": "#cdc2dd", "secondary-fixed": "#fad7ff", "on-primary-container": "#5f3370", "tertiary-fixed": "#e9def9", outline: "#99907c", "tertiary-container": "#b8aec8", "primary-fixed": "#f9d8ff", "on-error-container": "#ffdad6", "surface-container-lowest": "#13091e", surface: "#190f24", primary: "#f0bcff", "on-secondary-container": "#f9d4ff", "on-tertiary-container": "#494157", "surface-container-low": "#21172c", "surface-container-highest": "#3b3047", "on-tertiary-fixed": "#1e182c", "on-secondary-fixed-variant": "#77009a", "on-primary-fixed-variant": "#613472", "on-tertiary": "#342d42", "on-secondary": "#54006e", "primary-fixed-dim": "#eab3fa", "inverse-surface": "#eedcfa", "surface-bright": "#40344c", "on-tertiary-fixed-variant": "#4b4359", background: "#190f24", "inverse-primary": "#7b4c8b", secondary: "#efb0ff", tertiary: "#d4cae5", "outline-variant": "#4d4635", "on-primary-fixed": "#310343", "on-surface-variant": "#d0c5af", "primary-container": "#d5a0e5", "secondary-fixed-dim": "#efb0ff", "surface-variant": "#3b3047", "surface-dim": "#190f24", "error-container": "#93000a", "inverse-on-surface": "#372c42", "on-secondary-fixed": "#330044", error: "#ffb4ab", "on-primary": "#481d59", "on-surface": "#eedcfa", "on-background": "#eedcfa", "surface-tint": "#eab3fa", "surface-container-high": "#30253c"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {"margin-mobile": "1rem", "container-max": "1280px", "margin-desktop": "2.5rem", "stack-md": "1.5rem", "stack-lg": "3rem", gutter: "1.5rem", "stack-sm": "0.5rem"}, fontFamily: {"headline-md": ["Playfair Display"], "label-md": ["Manrope"], "display-lg": ["Playfair Display"], "body-lg": ["Manrope"], "headline-lg": ["Playfair Display"], "body-md": ["Manrope"], headline: ["Playfair Display"], display: ["Playfair Display"], body: ["Manrope"], label: ["Manrope"]}, fontSize: {"headline-md": ["24px", {lineHeight: "1.4", fontWeight: "500"}], "label-md": ["14px", {lineHeight: "1", letterSpacing: "0.05em", fontWeight: "600"}], "display-lg": ["48px", {lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "1.6", fontWeight: "400"}], "headline-lg": ["32px", {lineHeight: "1.3", fontWeight: "500"}], "body-md": ["16px", {lineHeight: "1.6", fontWeight: "400"}]}}}};</script>
+<style>
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        @keyframes orbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes reverse-orbit {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        .floating { animation: float 6s ease-in-out infinite; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+        }
+        .aura-glow {
+            position: absolute;
+            background: radial-gradient(circle, rgba(242, 202, 80, 0.08) 0%, rgba(25, 15, 36, 0) 70%);
+            z-index: -1;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary/30 selection:text-primary">
+<!-- TopNavBar Implementation -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 bg-surface/40 backdrop-blur-md border-b border-outline-variant/20">
+<div class="text-2xl font-headline-lg font-bold text-primary tracking-tighter">VM</div>
+<!-- Navigation Links -->
+<div class="hidden md:flex gap-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Our Heritage</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">The Collections</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">The Experience</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Bespoke</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Journal</a>
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-6">
+<button class="hover:bg-primary/10 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-primary">search</span>
+</button>
+<button class="hover:bg-primary/10 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</button>
+</div>
+</nav>
+<main class="relative min-h-screen pt-20 overflow-hidden">
+<!-- Background Atmospheric Layer -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full object-cover opacity-60 filter grayscale-[20%]" data-alt="A moody, cinematic high-end background for a luxury fashion brand. The scene depicts a woman in a flowing architectural black gown standing by a large stone-framed window overlooking a misty, melancholic European cityscape at twilight. The lighting is soft and diffused with a cool violet and champagne gold color palette, evoking a sense of quiet luxury and professional elegance." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1yV20jdRfUx-MbI-InFJw9O4PiCFnEHiX7g7WPVeAQBLWH-zFejgts3FFJIyq4YGK4G-ZJnTJd6s1pZPsHEmQO51H0bHs8YzPpj7oi5chGtt_v439puPt0C6C_9cjpa0721tweNOdUqf3oXozilk6kBE4PcyqegrsnK3SiahAbt9a0HJL6AuqKVao7wPup9ida5pOmKVSfaIX5VAyIm60rB6VbkkHCaA5yG3E0ZsVMPNs3SbACzUvvQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</div>
+<!-- Aura Highlighting -->
+<div class="aura-glow w-[800px] h-[800px] top-[-10%] left-[-10%] opacity-40"></div>
+<div class="aura-glow w-[600px] h-[600px] bottom-[-5%] right-[-5%] opacity-20"></div>
+<div class="relative z-10 container mx-auto px-margin-desktop h-[calc(100vh-80px)] flex flex-col justify-center">
+<div class="grid lg:grid-cols-12 gap-gutter items-center">
+<!-- Hero Content -->
+<div class="lg:col-span-6 space-y-stack-md">
+<h1 class="font-display-lg text-display-lg text-primary leading-tight max-w-xl">
+                        Embrace the <br/>
+<span class="italic text-on-surface opacity-90">exquisite solace.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md opacity-80">
+                        Discover the collections of Velvet Melancholy. Where elegance finds its depth through texture and light.
+                    </p>
+<!-- Interactive Orbital Showcase -->
+<div class="relative w-full aspect-square max-w-[440px] pt-12">
+<div class="absolute inset-0 border-[0.5px] border-primary/20 rounded-full" style="animation: orbit 30s linear infinite;">
+<!-- Item 1: Timeless Silks -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2" style="animation: reverse-orbit 30s linear infinite;">
+<div class="glass-card p-4 rounded-xl flex flex-col items-center gap-2 group hover:scale-105 transition-all cursor-pointer">
+<div class="w-16 h-16 rounded-full overflow-hidden border border-primary/30">
+<div class="w-full h-full bg-cover bg-center" data-alt="Close-up shot of luxurious, flowing silk fabric in a deep midnight violet color. The lighting catches the high-end texture and subtle sheen of the architectural garment. The overall mood is sophisticated and exclusive, fitting a quiet luxury brand." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDKqIqREs4UP5iFpItpER8lSvx78rK-CRVte3VE-x0JfGXtkvrOHQ_tnBLmRuaK__cwfv4D9I3QSvkXBqJNMvq5VG6k27Ct8Oij4rRfk4sxaenGY76u9QRl7WGQdy04JEwdgLbMZPksxMMoZTBmdLsn27fis6AFMqbkMhaRQ_q07XEJZfsx80esCtKg88AmhpCCM6YLBTjnpTqJXpGOhqQUi7Jmk97s7Yy42AZYqqwotPzGUZ6LuLOu4w')"></div>
+</div>
+<span class="font-label-md text-[10px] text-primary uppercase tracking-widest">Timeless Silks</span>
+</div>
+</div>
+<!-- Item 2: Gold & Onyx -->
+<div class="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2" style="animation: reverse-orbit 30s linear infinite;">
+<div class="glass-card p-4 rounded-xl flex flex-col items-center gap-2 group hover:scale-105 transition-all cursor-pointer">
+<div class="w-16 h-16 rounded-full overflow-hidden border border-primary/30">
+<div class="w-full h-full bg-cover bg-center" data-alt="Macro detail of artisan-crafted jewelry featuring polished onyx stone and textured champagne gold settings. The lighting is dramatic and moody, reflecting high-end corporate elegance with a melancholic-chic aesthetic. Atmospheric shadows add depth to the materials." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDYEkdT0SCqUAAWz7nGH9aL_BCeX-Y6rfa51jORAUHfoW_Ig6OdiMmgY-FHOyW3uwySRYlUBl5mhEYDr86e9974qmRwq4pu3knQzA99ZI77IUwFXzm1RMypO-7Dli5DxaUZsqCmfIouC0TDZTkOlBPjsUVAi6nCGDKY5xER81HDB8kyhoT_DIeJ279w3-0N3bB-NjugRwnjzdV7HaXF4Dn_Nlu8Bw7_GJ1xOXFEAaQufAPTb4k0PRso8A')"></div>
+</div>
+<span class="font-label-md text-[10px] text-primary uppercase tracking-widest">Gold &amp; Onyx</span>
+</div>
+</div>
+<!-- Item 3: Architectural Leather -->
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2" style="animation: reverse-orbit 30s linear infinite;">
+<div class="glass-card p-4 rounded-xl flex flex-col items-center gap-2 group hover:scale-105 transition-all cursor-pointer">
+<div class="w-16 h-16 rounded-full overflow-hidden border border-primary/30">
+<div class="w-full h-full bg-cover bg-center" data-alt="Sculptural leather detail of a bespoke high-fashion accessory. The material is matte black with subtle brushed metal accents. The design is minimalist and architectural, set against a dark, atmospheric background that emphasizes its form and texture." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCoYDYFX-vOCgo4oe1d23Yh-Yg8Oxv6XXeDxhBzM0QJkg0AO9oqppgvlbnrygKskwn3Wx8fJcnkl7z0gc0GRJOQ7vRVO68X6r5eL3B6sVJmVtuZMrU73q8-sU7wsyAv83PKDazDDzXFCrKMWL5taANmngC5_F197gIkuOFG2hRkuMqu_JPimF68TSY-MLbpv5ZT-A2gRMBkD-Em4BLqxBXDG0r6yatIpXFndb8ytYkgyVt17_iWUtRGZA')"></div>
+</div>
+<span class="font-label-md text-[10px] text-primary uppercase tracking-widest">Architectural Leather</span>
+</div>
+</div>
+</div>
+<!-- Central Core Glow -->
+<div class="absolute inset-[30%] bg-primary/5 blur-[40px] rounded-full"></div>
+<div class="absolute inset-[40%] glass-card rounded-full flex items-center justify-center border-primary/30">
+<div class="text-center">
+<p class="text-[10px] font-label-md text-primary tracking-[0.2em] uppercase opacity-70">The</p>
+<p class="text-xl font-headline-md text-on-surface">Collections</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Visual CTA and Quote -->
+<div class="lg:col-span-6 flex flex-col justify-end items-end h-full py-12">
+<div class="glass-card p-8 rounded-2xl max-w-sm mb-12 floating">
+<p class="font-headline-md text-headline-md text-primary mb-4">Velvet Echoes</p>
+<p class="font-body-md text-on-surface-variant italic mb-6">
+                            "In the quietude of dusk, we find our truest reflection. Our garments are but shadows of that inner stillness."
+                        </p>
+<div class="flex items-center gap-2">
+<div class="h-px w-8 bg-primary/40"></div>
+<span class="text-[12px] font-label-md text-on-surface-variant uppercase tracking-widest">L. V. Artisan</span>
+</div>
+</div>
+<!-- Main CTA -->
+<button class="group relative px-12 py-6 overflow-hidden rounded-full transition-all duration-300">
+<div class="absolute inset-0 bg-primary/90 group-hover:bg-primary transition-colors"></div>
+<div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_white_0%,_transparent_70%)] group-hover:scale-150 transition-transform duration-700"></div>
+<div class="relative flex flex-col items-center">
+<span class="font-headline-md text-headline-md text-on-primary">Bespoke</span>
+<span class="text-[10px] font-label-md text-on-primary/70 tracking-widest uppercase">Inquire for a private consultation</span>
+</div>
+<!-- External Aura Glow -->
+<div class="absolute -inset-4 bg-primary/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Implementation -->
+<footer class="w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-container-lowest border-t border-outline-variant/20 relative z-20">
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="text-headline-md font-headline-md text-primary">ArtisanCrafted</div>
+<p class="font-body-md text-body-md text-on-surface-variant/60">© 2024 ArtisanCrafted. All rights reserved.</p>
+</div>
+<div class="flex gap-12">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-shift" href="#">About Us</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-shift" href="#">Contact</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-shift" href="#">FAQs</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-shift" href="#">Shipping</a>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">public</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">brand_awareness</span>
+</div>
+</footer>
+<script>
+        // Micro-interaction for the orbital items
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const orbiter = card.closest('[style*="animation"]');
+                if (orbiter) orbiter.style.animationPlayState = 'paused';
+            });
+            card.addEventListener('mouseleave', () => {
+                const orbiter = card.closest('[style*="animation"]');
+                if (orbiter) orbiter.style.animationPlayState = 'running';
+            });
+        });
+    </script>
+</body></html>

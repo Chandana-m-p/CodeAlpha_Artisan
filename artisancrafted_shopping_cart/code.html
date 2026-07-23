@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Your Collection | ArtisanCrafted</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#3b3047",
+                    "surface-dim": "#190f24",
+                    "outline": "#988d98",
+                    "background": "#190f24",
+                    "on-secondary-fixed": "#330044",
+                    "inverse-on-surface": "#372c42",
+                    "on-tertiary-fixed-variant": "#4b4359",
+                    "surface-container-low": "#21172c",
+                    "surface": "#190f24",
+                    "tertiary-fixed-dim": "#cdc2dd",
+                    "surface-container-lowest": "#13091e",
+                    "on-primary-fixed": "#310343",
+                    "inverse-surface": "#eedcfa",
+                    "on-secondary-fixed-variant": "#77009a",
+                    "secondary": "#efb0ff",
+                    "primary": "#f8d5ff",
+                    "on-tertiary-fixed": "#1e182c",
+                    "secondary-fixed-dim": "#efb0ff",
+                    "tertiary-fixed": "#e9def9",
+                    "tertiary-container": "#cbc0db",
+                    "primary-fixed": "#f9d8ff",
+                    "outline-variant": "#4d444e",
+                    "on-primary-fixed-variant": "#613472",
+                    "surface-container-high": "#30253c",
+                    "on-primary-container": "#6c3f7d",
+                    "on-background": "#eedcfa",
+                    "error-container": "#93000a",
+                    "on-surface": "#eedcfa",
+                    "on-tertiary-container": "#554e64",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-highest": "#3b3047",
+                    "primary-fixed-dim": "#eab3fa",
+                    "tertiary": "#e7dcf7",
+                    "primary-container": "#e8b1f8",
+                    "on-secondary": "#54006e",
+                    "surface-tint": "#eab3fa",
+                    "on-surface-variant": "#cfc3cf",
+                    "on-error": "#690005",
+                    "error": "#ffb4ab",
+                    "surface-bright": "#40344c",
+                    "secondary-container": "#a300d3",
+                    "inverse-primary": "#7b4c8b",
+                    "on-secondary-container": "#f9d4ff",
+                    "secondary-fixed": "#fad7ff",
+                    "on-primary": "#481d59",
+                    "surface-container": "#251b31",
+                    "on-tertiary": "#342d42"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "3rem",
+                    "stack-md": "1.5rem",
+                    "margin-desktop": "2.5rem",
+                    "gutter": "1.5rem",
+                    "stack-sm": "0.5rem",
+                    "container-max": "1280px",
+                    "margin-mobile": "1rem"
+            },
+            "fontFamily": {
+                    "display-lg": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "body-lg": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "headline-md": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #13091e;
+            color: #eedcfa;
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05)) 1;
+        }
+
+        .aura-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(203, 67, 250, 0.1) 0%, rgba(26, 16, 37, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .champagne-accent {
+            color: #F3E5AB; /* Champagne Gold approximation */
+        }
+
+        .primary-btn-glow:hover {
+            box-shadow: 0 0 20px rgba(232, 177, 248, 0.4);
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen selection:bg-primary-container selection:text-on-primary-container">
+<!-- Background Atmospheric Aura -->
+<div class="fixed inset-0 z-0">
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-secondary/10 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/5 blur-[120px] rounded-full"></div>
+</div>
+<!-- Navigation (Shared Component Logic: TopNavBar) -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 bg-surface/40 backdrop-blur-md border-b border-outline-variant/20">
+<div class="text-2xl font-headline-lg font-bold text-primary">VM</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Our Heritage</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">The Collections</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">The Experience</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Bespoke</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Journal</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform">search</button>
+<div class="relative">
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform">account_circle</button>
+</div>
+<div class="relative">
+<button class="material-symbols-outlined text-primary hover:scale-110 transition-transform">shopping_bag</button>
+<span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-secondary text-[10px] font-bold text-on-secondary">3</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="relative z-10 pt-32 pb-stack-lg max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Header -->
+<header class="mb-stack-md flex flex-col gap-2">
+<h1 class="font-display-lg text-display-lg champagne-accent">Your Collection</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">A curated selection of your most desired artifacts.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Cart Items List (Left Side) -->
+<section class="lg:col-span-8 flex flex-col gap-stack-sm">
+<!-- Cart Item 1 -->
+<div class="glass-card p-6 flex flex-col md:flex-row gap-6 group relative overflow-hidden transition-all duration-300 hover:bg-surface-container-low/40">
+<div class="aura-glow opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-full md:w-40 h-40 flex-shrink-0 bg-surface-container-highest overflow-hidden rounded-lg">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-end macro shot of a Sterling Silver Wave Ring, featuring fluid, sculptural curves that mimic water ripples. The lighting is moody and dramatic with soft violet highlights reflecting off the polished silver surface, set against a dark, textured charcoal background. The overall aesthetic is minimalist, elegant, and mysterious, aligning with a luxury jewelry brand's visual identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjHG5eUdd9-5jLOw5uk7Y6-5x-H8JFDaOauUXXw4UJoUaxE5mSA86Ib3DCk0KPSvz8qEVUnfG3-_sGHCGzCJmaSdkAwQGZSwPX4jEYzv4dZTjGpWVeV5RepSbusYR7rU0FKuVjzSRhZLGKnvIV7_NBNiA_NYIDO5F_5j6PCBVEgbOs9vDGNPf-VjUBQx4N0vltvbIY2uB9K4OVseKWbN-FGtf4qCHhGB8yFkJQmUECPAOt7R37zvlulg"/>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Silver Wave Ring</h3>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Sterling Silver / Size 7</p>
+</div>
+<button class="material-symbols-outlined text-outline hover:text-error transition-colors p-2">delete</button>
+</div>
+<div class="flex items-end justify-between mt-6">
+<div class="flex items-center bg-surface-container-highest/50 rounded-full border border-outline-variant/20 p-1">
+<button class="w-8 h-8 flex items-center justify-center text-primary hover:bg-primary/10 rounded-full transition-colors material-symbols-outlined">remove</button>
+<span class="px-4 font-label-md text-label-md font-bold">1</span>
+<button class="w-8 h-8 flex items-center justify-center text-primary hover:bg-primary/10 rounded-full transition-colors material-symbols-outlined">add</button>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md champagne-accent">$450.00</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Cart Item 2 -->
+<div class="glass-card p-6 flex flex-col md:flex-row gap-6 group relative overflow-hidden transition-all duration-300 hover:bg-surface-container-low/40">
+<div class="aura-glow opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-full md:w-40 h-40 flex-shrink-0 bg-surface-container-highest overflow-hidden rounded-lg">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up product photograph of a delicate 'Ethereal Mist' pendant necklace crafted from 18k champagne gold with a pale lavender sapphire. The jewelry rests on a dark velvet cushion, with ethereal light rays and soft bokeh bubbles creating a dreamlike atmosphere. The colors are deep midnight violet with warm metallic gold accents, conveying a sense of quiet luxury and artisanal craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ3frEi44psi8dih5k5aekxb9bZXF0ERHP9N09tBEtoFBL0MGjFrTbxJwBrV8C6IuVM5YFw9cu-f6FVhm9ABO-cAQP3S0uhFfCH9CiGPAVe8W3yg6mN70vP6xDqSYnzAjRbanJoxrwtKhZ9TWoxuy_SuANWGFMhvmTXmNfeliiXtUWXH0ePsDb0T0JPRaZyKYbjHT9iT2Db-y93OVNT3aAOUAfZt8PYK-m-zyIQ68hLMKAEmc-CsNbJA"/>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Ethereal Mist Pendant</h3>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">18k Champagne Gold / Lavender Sapphire</p>
+</div>
+<button class="material-symbols-outlined text-outline hover:text-error transition-colors p-2">delete</button>
+</div>
+<div class="flex items-end justify-between mt-6">
+<div class="flex items-center bg-surface-container-highest/50 rounded-full border border-outline-variant/20 p-1">
+<button class="w-8 h-8 flex items-center justify-center text-primary hover:bg-primary/10 rounded-full transition-colors material-symbols-outlined">remove</button>
+<span class="px-4 font-label-md text-label-md font-bold">1</span>
+<button class="w-8 h-8 flex items-center justify-center text-primary hover:bg-primary/10 rounded-full transition-colors material-symbols-outlined">add</button>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md champagne-accent">$1,280.00</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Cart Item 3 -->
+<div class="glass-card p-6 flex flex-col md:flex-row gap-6 group relative overflow-hidden transition-all duration-300 hover:bg-surface-container-low/40">
+<div class="aura-glow opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-full md:w-40 h-40 flex-shrink-0 bg-surface-container-highest overflow-hidden rounded-lg">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A luxurious hand-blown glass candle vessel in a deep iridescent indigo hue, emitting a soft warm glow from within. The surface of the glass has a subtle frosted texture that catches ambient violet light. The setting is a minimalist, dark wooden vanity with faint floral shadows in the background. The mood is serene, melancholic, and deeply sophisticated, emphasizing the artisanal quality of the item." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQnfRxorQhyQ7qRyyEayqUKGX4MfSTh13iFjk68-jfdOuKqjdILsI1XE8FDw3AwzoDozg2_AhdxI1PJbIpClhjoEhoZj23GDyb9lFBmElrOZVMR4gTtmT3uqnNzgMCmaWt7xZ523khczUCTBkAzqDCL4ayoFb78dpYgQBcjsph5upEul7HW1PsgDZitw6r0zu4lwjL_xR9yX2bTr_qQzElLiVj6wMdD1e5xnB5uFiE9b35lliONfjFoA"/>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Twilight Bloom Candle</h3>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Hand-Blown Glass / Midnight Jasmine</p>
+</div>
+<button class="material-symbols-outlined text-outline hover:text-error transition-colors p-2">delete</button>
+</div>
+<div class="flex items-end justify-between mt-6">
+<div class="flex items-center bg-surface-container-highest/50 rounded-full border border-outline-variant/20 p-1">
+<button class="w-8 h-8 flex items-center justify-center text-primary hover:bg-primary/10 rounded-full transition-colors material-symbols-outlined">remove</button>
+<span class="px-4 font-label-md text-label-md font-bold">1</span>
+<button class="w-8 h-8 flex items-center justify-center text-primary hover:bg-primary/10 rounded-full transition-colors material-symbols-outlined">add</button>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md champagne-accent">$115.00</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Order Summary (Right Side - Sticky) -->
+<aside class="lg:col-span-4 lg:sticky lg:top-32">
+<div class="glass-card p-margin-mobile md:p-8 flex flex-col gap-6 relative">
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-secondary/10 blur-3xl rounded-full"></div>
+<h2 class="font-headline-md text-headline-md champagne-accent">Summary</h2>
+<div class="space-y-4 border-b border-outline-variant/20 pb-6">
+<div class="flex justify-between items-center font-body-md text-body-md">
+<span class="text-on-surface-variant">Subtotal</span>
+<span class="text-on-surface">$1,845.00</span>
+</div>
+<div class="flex justify-between items-center font-body-md text-body-md">
+<span class="text-on-surface-variant">Shipping Estimate</span>
+<span class="text-on-surface">$25.00</span>
+</div>
+<div class="flex justify-between items-center font-body-md text-body-md">
+<span class="text-on-surface-variant">Tax</span>
+<span class="text-on-surface">$152.20</span>
+</div>
+</div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-headline-md text-headline-md text-primary">Total</span>
+<span class="font-headline-md text-headline-md champagne-accent">$2,022.20</span>
+</div>
+<div class="space-y-4 mt-2">
+<button class="w-full bg-primary-container text-on-primary-container py-4 px-6 rounded-lg font-label-md text-label-md font-bold uppercase tracking-widest transition-all duration-300 primary-btn-glow hover:scale-[1.02] active:scale-95">
+                            Proceed to Checkout
+                        </button>
+<p class="text-[11px] text-on-surface-variant text-center uppercase tracking-tighter opacity-60">
+                            Secure Encrypted Checkout • Free Global Shipping on Orders over $1,500
+                        </p>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant/20">
+<p class="font-label-md text-label-md text-primary mb-4">Promotional Code</p>
+<div class="flex gap-2">
+<input class="flex-grow bg-surface-container-highest/30 border-0 border-b border-outline-variant/50 focus:border-primary focus:ring-0 text-on-surface placeholder:text-outline-variant text-sm py-2 px-0 transition-all" placeholder="Enter code" type="text"/>
+<button class="font-label-md text-label-md text-primary hover:text-secondary transition-colors uppercase">Apply</button>
+</div>
+</div>
+</div>
+<!-- Trust Badges -->
+<div class="mt-6 flex flex-wrap justify-center gap-6 grayscale opacity-40">
+<span class="material-symbols-outlined text-4xl">verified_user</span>
+<span class="material-symbols-outlined text-4xl">local_shipping</span>
+<span class="material-symbols-outlined text-4xl">eco</span>
+<span class="material-symbols-outlined text-4xl">diamond</span>
+</div>
+</aside>
+</div>
+<!-- Complementary Selections (Bento style) -->
+<section class="mt-stack-lg">
+<h2 class="font-headline-md text-headline-md text-primary mb-stack-md">Complete the Look</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<div class="glass-card aspect-square relative group overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A set of minimalist sculptural silver earrings displayed on a dark grey volcanic rock. The jewelry has fluid lines and a mirror-like finish, catching sharp pinpoints of light and soft violet ambient glows. The background is a deep, velvety purple, creating an atmosphere of exclusivity and professional mystery. High-end editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuuSGg5eBodH8yGj9jXd4HGitN_ymRS-nUORh_KAciZOU4plBvppyMEoL2hgzCvwhQPJjxyq_eD4L0gFMstd6YY4vZ5gWPgIYyW_UocNuLtkuHLg9Gqp3kP4hofeGVTNrTdD9pByhi4A6QMdMRIaPNPtRmBvG_4HGOZZ1ry7OI306it6OQCLFgV2GluB5ydB9kMX0zL7RKhDp0kTYCe0_SjPcIGaJDSYX1UL9BcrXLcvkpGcJae5VfUg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="font-label-md text-label-md text-primary">Silver Echo Studs</p>
+<p class="text-sm champagne-accent">$210</p>
+</div>
+</div>
+<div class="glass-card aspect-square relative group overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A sleek black leather artisan wallet with minimal silver hardware, placed on a dark marble surface. The leather has a fine grain and a soft matte finish. Strategic lighting creates deep shadows and elegant highlights in violet and champagne gold tones. The composition is clean and luxurious, emphasizing materiality and refinement." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXY2k5cugQGrWfxY19UCKAuG1Zl3DgRJKcXMWle5pLP8xepZsD27qkFFLEmKvqiLQ7O3Q-aVERKekWPtwS-Wn2YixutnmOlukCOqmj7WzJpNxZpTRmYnFHZ4h5GKo0v2cJ5NrK-3Vji_1CxhhV6X5dyVugvbZ6EFReotbouy0U3rEeln0dka4V4fGEnYKfDg8TqTsGhIUy9J70KSsczzA3Ej1acNYwvqU-daGGQOVmyr4DGfxXGfSCXA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="font-label-md text-label-md text-primary">Obsidian Folio</p>
+<p class="text-sm champagne-accent">$185</p>
+</div>
+</div>
+<div class="glass-card aspect-square relative group overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A delicate gold chain bracelet with tiny iridescent pearls, draped over a piece of frosted glass. The background is a soft, atmospheric purple aura glow. The pearls reflect hints of neon luminescence. The overall visual style is melancholic-chic, blending traditional luxury with a modern, electric edge." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrz8iyapff_4hhQ_vwRpkXwcGF88v6Fr7IbicDoqpJMAwY-Sr4Kr5bFWn62pRswC9qhvOf_-MUFbLFEdM3xv0GaYiqUdo4g2sRddWoOrMTD6B6WDlzuIx9tLcYBBv7J6_sVLcPciJxyGLoe54-9G1pyQHf0Evg2zds6ngVhv3j-taGikdyn4nVyxfVPLiGpaBGGRDw0Ufk65a22sfdVINTWb6sTHIUbdLGU21uXplbVCh9QnHOo09DYw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="font-label-md text-label-md text-primary">Lumina Bracelet</p>
+<p class="text-sm champagne-accent">$340</p>
+</div>
+</div>
+<div class="glass-card aspect-square relative group overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A high-end ceramic tray in a deep matte plum color, holding a single sculpted silver key. The tray has a unique organic shape and a slightly grainy texture. The lighting is low-key and dramatic, with soft glows highlighting the edges of the ceramic. Part of a luxury lifestyle collection for a boutique brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXGdN5F9Mn_Wgbt2szvGufzOTXmErfXk7rgUhfK2YKDO8j1CL0CSioxI6ugYstSd7x-rJq6VIe_4PQQT-t7HZ3_Y2Wm9_bFkXh05CV5lctUUsu7QKCYOVVB-UpeviCVOr8a50EzTPq5AAvhGRil9psUtdhUtcvFzX-WC5g1qmo0xBLthHf3HRP65bR1hpgWl5mpk7EJ5TEgVhB0pcodQAd1d6SVQyA_TaK6is80suKsaBlLMvElJRBHg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="font-label-md text-label-md text-primary">Sculpted Valet Tray</p>
+<p class="text-sm champagne-accent">$95</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component Logic) -->
+<footer class="w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-container-lowest border-t border-outline-variant/20 relative z-10">
+<div class="text-headline-md font-headline-md text-primary">ArtisanCrafted</div>
+<div class="flex gap-8 my-6 md:my-0">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">FAQs</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping</a>
+</div>
+<div class="flex flex-col items-end gap-2">
+<p class="font-body-md text-body-md text-on-surface-variant opacity-60">© 2024 ArtisanCrafted. All rights reserved.</p>
+<div class="flex gap-4 opacity-40 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined cursor-pointer">potted_plant</span>
+<span class="material-symbols-outlined cursor-pointer">qr_code_2</span>
+<span class="material-symbols-outlined cursor-pointer">fluid</span>
+</div>
+</div>
+</footer>
+<!-- Micro-interactions Script -->
+<script>
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const aura = card.querySelector('.aura-glow');
+                if (aura) {
+                    aura.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(203,67,250,0.15) 0%, rgba(26,16,37,0) 70%)`;
+                }
+            });
+        });
+
+        // Simple qty toggle logic placeholder
+        document.querySelectorAll('.material-symbols-outlined').forEach(btn => {
+            if(btn.innerText === 'add' || btn.innerText === 'remove') {
+                btn.addEventListener('click', () => {
+                    const span = btn.parentElement.querySelector('span');
+                    let val = parseInt(span.innerText);
+                    if(btn.innerText === 'add') span.innerText = val + 1;
+                    if(btn.innerText === 'remove' && val > 1) span.innerText = val - 1;
+                });
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,167 @@
+<%- include('partials/header', { title: 'Collections' }) %>
+
+<main class="pt-28 px-margin-mobile md:px-margin-desktop pb-12 max-w-[1440px] mx-auto min-h-screen">
+  <div class="mb-stack-lg">
+    <nav class="flex text-sm text-on-surface-variant/60 gap-2 mb-4">
+      <a class="hover:text-primary transition-colors" href="/">Home</a>
+      <span>/</span>
+      <span class="text-on-surface">Collections</span>
+    </nav>
+    <h1 class="font-display-lg text-display-lg text-on-surface mb-2">Exquisite Collections</h1>
+    <p class="text-on-surface-variant max-w-xl font-body-lg text-body-lg">Discover pieces that bridge the gap between historical heritage and contemporary luxury.</p>
+  </div>
+
+  <div class="flex flex-col lg:flex-row gap-gutter">
+    <!-- Sidebar Filters -->
+    <aside class="w-full lg:w-72 shrink-0 space-y-4">
+      <div class="group">
+        <button class="w-full liquid-glass rounded-lg px-5 py-4 flex justify-between items-center group-hover:border-primary/50 transition-colors" onclick="toggleDropdown(this)">
+          <span class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Category</span>
+          <span class="material-symbols-outlined text-primary chevron transition-transform duration-300">expand_more</span>
+        </button>
+        <div class="dropdown-content mt-2 liquid-glass rounded-lg">
+          <div class="p-4 space-y-3">
+            <label class="flex items-center gap-3 cursor-pointer group/item">
+              <input class="w-4 h-4 bg-surface rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox" data-filter="category" value="Jewelry"/>
+              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Fine Jewelry</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer group/item">
+              <input class="w-4 h-4 bg-surface rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox" data-filter="category" value="Ceramics"/>
+              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Ceramics</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer group/item">
+              <input class="w-4 h-4 bg-surface rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox" data-filter="category" value="Leather Goods"/>
+              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Leather Goods</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="group">
+        <button class="w-full liquid-glass rounded-lg px-5 py-4 flex justify-between items-center group-hover:border-primary/50 transition-colors" onclick="toggleDropdown(this)">
+          <span class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Price Range</span>
+          <span class="material-symbols-outlined text-primary chevron transition-transform duration-300">expand_more</span>
+        </button>
+        <div class="dropdown-content mt-2 liquid-glass rounded-lg">
+          <div class="p-4 space-y-3">
+            <label class="flex items-center gap-3 cursor-pointer group/item">
+              <input class="w-4 h-4 bg-surface border-outline-variant text-primary focus:ring-primary/20" name="price" type="radio" data-filter="price" value="under100"/>
+              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Under $100</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer group/item">
+              <input class="w-4 h-4 bg-surface border-outline-variant text-primary focus:ring-primary/20" name="price" type="radio" data-filter="price" value="under500"/>
+              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors">$100 - $500</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer group/item">
+              <input class="w-4 h-4 bg-surface border-outline-variant text-primary focus:ring-primary/20" name="price" type="radio" data-filter="price" value="500plus"/>
+              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors">$500+</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="group">
+        <button class="w-full liquid-glass rounded-lg px-5 py-4 flex justify-between items-center group-hover:border-primary/50 transition-colors" onclick="toggleDropdown(this)">
+          <span class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Search</span>
+          <span class="material-symbols-outlined text-primary chevron transition-transform duration-300">expand_more</span>
+        </button>
+        <div class="dropdown-content mt-2 liquid-glass rounded-lg">
+          <div class="p-4">
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+              <input id="search-input" class="w-full bg-transparent border-b border-outline-variant/50 focus:border-primary pl-10 pr-4 py-2 text-sm text-on-surface transition-colors outline-none" placeholder="Search craft..." type="text"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Product Grid -->
+    <div class="flex-1">
+      <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <!-- Products loaded dynamically -->
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  function toggleDropdown(button) {
+    const parent = button.closest('.group');
+    parent.classList.toggle('dropdown-active');
+    const allDropdowns = document.querySelectorAll('.dropdown-active');
+    allDropdowns.forEach(dd => { if (dd !== parent) dd.classList.remove('dropdown-active'); });
+  }
+
+  let allProducts = [];
+
+  async function loadProducts() {
+    try {
+      const res = await fetch('/api/products');
+      allProducts = await res.json();
+      renderProducts(allProducts);
+    } catch (e) {
+      document.getElementById('product-grid').innerHTML = '<p class="text-on-surface-variant col-span-full text-center py-12">Unable to load products.</p>';
+    }
+  }
+
+  function renderProducts(products) {
+    const grid = document.getElementById('product-grid');
+    if (!products.length) {
+      grid.innerHTML = '<p class="text-on-surface-variant col-span-full text-center py-12">No products match your filters.</p>';
+      return;
+    }
+    grid.innerHTML = products.map(p => `
+      <div class="liquid-glass rounded-xl overflow-hidden flex flex-col relative group">
+        <div class="aura-glow"></div>
+        <div class="h-64 overflow-hidden relative">
+          <a href="/product/${p._id || p.id}">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="${p.image}" alt="${p.title}"/>
+          </a>
+          <button class="absolute top-4 right-4 bg-surface/80 p-2 rounded-full backdrop-blur hover:bg-primary hover:text-on-primary transition-all">
+            <span class="material-symbols-outlined text-sm">favorite</span>
+          </button>
+        </div>
+        <div class="p-6 flex flex-col flex-grow">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-headline-md text-headline-md text-on-surface">${p.title}</h3>
+            <span class="text-primary font-bold">$${p.price.toFixed(0)}</span>
+          </div>
+          <p class="text-on-surface-variant text-sm mb-4 line-clamp-2">${p.description}</p>
+          <div class="mt-auto flex justify-between items-center">
+            <div class="flex items-center gap-1 text-primary">
+              ${'<span class="material-symbols-outlined text-xs" style="font-variation-settings: \'FILL\' 1;">star</span>'.repeat(Math.floor(p.rating || 5))}
+              <span class="text-on-surface-variant text-xs ml-1">${p.category}</span>
+            </div>
+            <a href="/product/${p._id || p.id}" class="bg-primary text-on-primary px-4 py-1.5 rounded-full font-label-md text-xs hover:bg-primary-fixed-dim transition-colors">Explore</a>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function applyFilters() {
+    let filtered = [...allProducts];
+    const checkedCategories = [...document.querySelectorAll('[data-filter="category"]:checked')].map(c => c.value);
+    if (checkedCategories.length) {
+      filtered = filtered.filter(p => checkedCategories.includes(p.category));
+    }
+    const priceFilter = document.querySelector('[data-filter="price"]:checked');
+    if (priceFilter) {
+      const val = priceFilter.value;
+      if (val === 'under100') filtered = filtered.filter(p => p.price < 100);
+      else if (val === 'under500') filtered = filtered.filter(p => p.price < 500);
+      else if (val === '500plus') filtered = filtered.filter(p => p.price >= 500);
+    }
+    const search = document.getElementById('search-input').value.toLowerCase();
+    if (search) {
+      filtered = filtered.filter(p => p.title.toLowerCase().includes(search) || p.description.toLowerCase().includes(search));
+    }
+    renderProducts(filtered);
+  }
+
+  document.querySelectorAll('[data-filter]').forEach(el => el.addEventListener('change', applyFilters));
+  document.getElementById('search-input').addEventListener('input', applyFilters);
+
+  loadProducts();
+</script>
+
+<%- include('partials/footer') %>

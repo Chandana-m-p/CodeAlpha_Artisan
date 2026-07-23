@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background: radial-gradient(circle at top right, #251b31, #190f24);
+            min-height: 100vh;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .aura-glow {
+            background: radial-gradient(circle, rgba(232, 177, 248, 0.08) 0%, rgba(26, 16, 37, 0) 70%);
+        }
+        .text-champagne { color: #D4AF37; }
+        .border-champagne { border-color: #D4AF37; }
+        .bg-champagne { background-color: #D4AF37; }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#190f24",
+                      "surface-container-lowest": "#13091e",
+                      "surface-container-highest": "#3b3047",
+                      "on-error-container": "#ffdad6",
+                      "tertiary-fixed-dim": "#cdc2dd",
+                      "tertiary": "#e7dcf7",
+                      "error-container": "#93000a",
+                      "primary-fixed-dim": "#eab3fa",
+                      "surface-container-high": "#30253c",
+                      "outline-variant": "#4d444e",
+                      "surface-dim": "#190f24",
+                      "on-surface-variant": "#cfc3cf",
+                      "tertiary-container": "#cbc0db",
+                      "surface-variant": "#3b3047",
+                      "primary-fixed": "#f9d8ff",
+                      "error": "#ffb4ab",
+                      "primary-container": "#e8b1f8",
+                      "inverse-surface": "#eedcfa",
+                      "on-tertiary-fixed": "#1e182c",
+                      "on-primary-container": "#6c3f7d",
+                      "secondary-container": "#a300d3",
+                      "on-error": "#690005",
+                      "on-secondary-fixed": "#330044",
+                      "surface-bright": "#40344c",
+                      "on-tertiary-container": "#554e64",
+                      "outline": "#988d98",
+                      "inverse-on-surface": "#372c42",
+                      "secondary-fixed": "#fad7ff",
+                      "background": "#190f24",
+                      "on-background": "#eedcfa",
+                      "surface-container-low": "#21172c",
+                      "on-tertiary": "#342d42",
+                      "on-surface": "#eedcfa",
+                      "on-secondary-container": "#f9d4ff",
+                      "on-tertiary-fixed-variant": "#4b4359",
+                      "primary": "#f8d5ff",
+                      "secondary-fixed-dim": "#efb0ff",
+                      "on-primary-fixed-variant": "#613472",
+                      "on-secondary-fixed-variant": "#77009a",
+                      "tertiary-fixed": "#e9def9",
+                      "on-secondary": "#54006e",
+                      "surface-container": "#251b31",
+                      "inverse-primary": "#7b4c8b",
+                      "surface-tint": "#eab3fa",
+                      "on-primary-fixed": "#310343",
+                      "secondary": "#efb0ff",
+                      "on-primary": "#481d59"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-md": "1.5rem",
+                      "stack-sm": "0.5rem",
+                      "stack-lg": "3rem",
+                      "gutter": "1.5rem",
+                      "container-max": "1280px",
+                      "margin-mobile": "1rem",
+                      "margin-desktop": "2.5rem"
+              },
+              "fontFamily": {
+                      "display-lg": ["Playfair Display"],
+                      "headline-md": ["Playfair Display"],
+                      "body-md": ["Manrope"],
+                      "body-lg": ["Manrope"],
+                      "label-md": ["Manrope"],
+                      "headline-lg": ["Playfair Display"]
+              },
+              "fontSize": {
+                      "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="font-body-md text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 bg-surface/40 backdrop-blur-md border-b border-outline-variant/20">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-headline-lg font-bold text-primary">VM</span>
+<div class="hidden lg:flex items-center gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Our Heritage</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">The Collections</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">The Experience</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Bespoke</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Journal</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-primary/10 rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined text-primary">search</span>
+</button>
+<button class="p-2 hover:bg-primary/10 rounded-full transition-all active:scale-95 text-primary border-b-2 border-primary pb-1">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</nav>
+<!-- Side Navigation Shell (Hidden on Mobile) -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-screen w-64 bg-surface-container-lowest border-r border-outline-variant/10 shadow-xl pt-24 z-40">
+<div class="px-6 mb-8">
+<h2 class="font-headline-md text-primary">ArtisanCrafted</h2>
+<p class="text-xs text-on-surface-variant tracking-widest uppercase">Member Portal</p>
+</div>
+<nav class="flex-1">
+<a class="bg-secondary-container/30 text-primary border-l-4 border-primary px-6 py-4 flex items-center gap-3 transition-all translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant/20 px-6 py-4 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md text-label-md">Products</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant/20 px-6 py-4 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant/20 px-6 py-4 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Customers</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant/20 px-6 py-4 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined">campaign</span>
+<span class="font-label-md text-label-md">Marketing</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant/20 px-6 py-4 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant/20 px-6 py-4 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-24 lg:ml-64 px-margin-mobile md:px-margin-desktop pb-12">
+<div class="max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Profile Card -->
+<div class="lg:col-span-4 space-y-6">
+<div class="glass-card rounded-xl p-8 relative overflow-hidden">
+<div class="aura-glow absolute inset-0 -z-10"></div>
+<div class="flex flex-col items-center text-center">
+<div class="relative w-32 h-32 rounded-full p-1 border-2 border-champagne mb-6">
+<img class="w-full h-full object-cover rounded-full" data-alt="A sophisticated close-up portrait of Alexander Thorne, a middle-aged man with sharp features and grey-streaked hair, wearing a high-collared dark violet velvet blazer. He stands in a dimly lit, high-end private gallery with soft, warm amber backlighting that emphasizes his refined and mysterious 'Master Collector' status." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMWzqxah4MEbDNuKHuLpQFJI1Yt-JmV3eSyVYnfRF9XIPMKtG3rDZU-gsZx0FN0JKh-ZyQMTrK56hCuIpWh1v7ID2nqbZBWKj5gb0oj_jg_48vtw2CTTOlRjzBsybR_Tl4hg7fOOU7ZTcZUoorBoqgfUuv497RrDY8rqE2VcGaTyc1MlMmsFi5PguzMD8hBUmSO3BCc4U5JIsEbpW9isg521gaQ0HjigS0Ws7FUYudsw6VVl0HNJG4GA"/>
+</div>
+<h3 class="font-headline-md text-on-surface mb-1">Alexander Thorne</h3>
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container/20 text-champagne text-xs font-bold tracking-widest uppercase border border-champagne/30">
+<span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">star</span>
+                                Master Collector
+                            </span>
+</div>
+<div class="mt-10 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-white/5 text-primary" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-md">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md">My Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="font-label-md">Saved Archives</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-label-md">Shipping Addresses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</div>
+</div>
+<!-- Atmospheric Banner -->
+<div class="rounded-xl h-48 relative overflow-hidden flex items-end p-6 group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A macro shot of liquid violet and gold ink swirling together in a dark obsidian-like medium. The texture is smooth and glossy, with tiny crystalline flakes catching light. The lighting is Moody and cinematic, reflecting a high-end luxury brand aesthetic for ArtisanCrafted." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBKMRuQhkvXmsKI7QzyyG8ze5RCGiBmy3Yut-yHwioX1-9j1r989bEYAEi_r0U5e1o2z8K2svFOmz-N2MAPP2dBo3YmUjE-K7LmHnCVzf6hG4NZwj24_P_VFZUPrNvaPphroumChJAQTHSeCLiaTbGhOVOl05aaI-sWa4jjMxfHFBxoZE5LuYI2_2aod6rTgmz--HtdlpwRWKeQaoWU45u02mc0VqM2I6vp7vB1BZAhKB7bbuU5Mk0P5Q')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent"></div>
+<div class="relative z-10">
+<p class="text-champagne font-label-md text-xs mb-1">EXCLUSIVE PREVIEW</p>
+<h4 class="font-headline-md text-white">The Midnight Collection</h4>
+</div>
+</div>
+</div>
+<!-- Right Column: Dashboard Content -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Welcome Banner -->
+<div class="glass-card rounded-xl p-10 flex flex-col md:flex-row justify-between items-center gap-6 relative">
+<div class="aura-glow absolute inset-0 -z-10 opacity-50"></div>
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-2">Welcome back, Alexander</h1>
+<p class="text-on-surface-variant font-body-lg">Curating the extraordinary since 2018.</p>
+</div>
+<button class="bg-primary-container text-on-primary-container px-8 py-4 rounded-lg font-bold tracking-wide hover:shadow-[0_0_20px_rgba(232,177,248,0.4)] transition-all active:scale-95">
+                            BROWSE NEW ARRIVALS
+                        </button>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glass-card rounded-xl p-6 text-center">
+<p class="text-on-surface-variant font-label-md text-xs tracking-widest uppercase mb-2">Total Acquisitions</p>
+<p class="font-display-lg text-4xl text-champagne">14</p>
+</div>
+<div class="glass-card rounded-xl p-6 text-center">
+<p class="text-on-surface-variant font-label-md text-xs tracking-widest uppercase mb-2">Active Orders</p>
+<p class="font-display-lg text-4xl text-champagne">1</p>
+</div>
+<div class="glass-card rounded-xl p-6 text-center">
+<p class="text-on-surface-variant font-label-md text-xs tracking-widest uppercase mb-2">Store Credit</p>
+<p class="font-display-lg text-4xl text-champagne">$250</p>
+</div>
+</div>
+<!-- Orders History Table -->
+<div class="glass-card rounded-xl overflow-hidden">
+<div class="px-8 py-6 border-b border-white/10 flex justify-between items-center">
+<h2 class="font-headline-md text-on-surface">My Orders History</h2>
+<button class="text-primary font-label-md text-xs hover:underline">VIEW ALL</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-white/5">
+<th class="px-8 py-4 font-label-md text-on-surface-variant">Order #</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant">Item</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant">Date</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant">Price</th>
+<th class="px-8 py-4 font-label-md text-on-surface-variant">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="px-8 py-6 font-mono text-sm">#7827481</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-container-high overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" data-alt="A cinematic close-up of the Ethereal Mist Pendant, a handcrafted piece of high-end jewelry featuring a pearlescent white stone encased in a web of delicate champagne gold wire. The pendant sits on a black velvet display stand, highlighted by a single soft spotlight creating elegant shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO1LLTs6U5faW2LMwB6G5Bwd2XyqARttmg9f8f-0z76EBXrX_STDSO6fVvrYTPIbyx2xNaGn3KTocIpJQSX_tS0TEbgWAbTi8_Gq2cE0CmEymzFU1VVLpgYlF9sDo18ucMJglQ3LxnNFOVegB6vhtjA-YnYsxNwz0d_QXQV4z1YQkkMSxeKAsPcZN74_9N-tW_jOMG0mh08jTE4-ypXGlH6B-zMmfRQ56qLhRP5b8mUNdWvFIVeou1Jw"/>
+</div>
+<span class="font-body-md group-hover:text-champagne transition-colors">Ethereal Mist Pendant</span>
+</div>
+</td>
+<td class="px-8 py-6 text-on-surface-variant">Oct 12, 2024</td>
+<td class="px-8 py-6 text-champagne font-bold">$1,450</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-xs font-bold border border-green-500/20">Delivered</span>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="px-8 py-6 font-mono text-sm">#7821998</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-container-high overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" data-alt="A luxury bespoke leather-bound journal with gold-leaf edges and intricate embossed details. The leather is a deep, rich midnight violet. It rests on a polished dark mahogany desk, illuminated by a warm candle light that flickers, highlighting the artisanal craftmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAboGDlJdgqOKaA3YGXk-1mkDIeV_WSsF9sm8CRWkNTR4XreKq_gzBRbpokW6_PPQ9Mw_JqriRbuTf6pQhVol1N156YzDSnx9ZP9orGwuipeSgKTLRueyywPhZugKOPZLiPpWicxv3NSKJU-HDXVyH9kGFxeF3hnU4PMrYQi13Oy9dgv8OpCW9Cx4xhC8FIwguWQ02d6_LwOuut5gGzPBRVJiGIhnCnVolHY7XYmdD4XKJ1Ge2rFTnJKg"/>
+</div>
+<span class="font-body-md group-hover:text-champagne transition-colors">Artisan Scribe Journal</span>
+</div>
+</td>
+<td class="px-8 py-6 text-on-surface-variant">Sep 28, 2024</td>
+<td class="px-8 py-6 text-champagne font-bold">$380</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold border border-blue-500/20">Preparing</span>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors group">
+<td class="px-8 py-6 font-mono text-sm">#7827986</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-container-high overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" data-alt="A set of handcrafted crystal tumblers with an etched geometric pattern that catches light in a spectrum of violet and gold. The glass is incredibly thin and clear. They are styled on a marble bar counter with a single orchid petal nearby, evoking a sense of refined home luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyk7RPIZzH7oTGOcp7ozJCslt7ttNsUqXx27VImP4tUU3wHbWVeLzgRs8O94xXFCFXFzlZrPTXMCfery5F4esUg8Hhq60arLl_TqY0DZw-21-nDov8DKx7rscfZs_o0lHqTb-aeTOlLZ2nKISBDuo2HyX4e1PAlXO8DMUAKCpZzuKaegODVeOz7zFIXxbVztItFozv1GHx3AkESsuPdynL4vDM7K-8RlUjB9vPgG3iF5MTDabWVNo2Kg"/>
+</div>
+<span class="font-body-md group-hover:text-champagne transition-colors">Prism Crystal Set</span>
+</div>
+</td>
+<td class="px-8 py-6 text-on-surface-variant">Sep 15, 2024</td>
+<td class="px-8 py-6 text-champagne font-bold">$920</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-xs font-bold border border-green-500/20">Delivered</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-outline-variant/20 bg-surface-container-lowest mt-12">
+<div class="flex flex-col gap-2">
+<span class="text-headline-md font-headline-md text-primary">ArtisanCrafted</span>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 ArtisanCrafted. All rights reserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">About Us</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Contact</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">FAQs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Shipping</a>
+</div>
+</footer>
+<!-- Micro-interaction Scripts -->
+<script>
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                // Subtle interaction logic can go here
+            });
+        });
+        
+        // Handle mobile nav toggle (placeholder logic)
+        const activeNavClasses = "bg-secondary-container/30 text-primary border-l-4 border-primary px-6 py-4 flex items-center gap-3";
+        const inactiveNavClasses = "text-on-surface-variant hover:bg-surface-variant/20 px-6 py-4 flex items-center gap-3 transition-all";
+    </script>
+</body></html>

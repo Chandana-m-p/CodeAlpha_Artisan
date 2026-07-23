@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | ArtisanCrafted</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#190f24", "surface-dim": "#190f24", "surface-bright": "#40344c",
+            "surface-container-lowest": "#13091e", "surface-container-low": "#21172c",
+            "surface-container": "#251b31", "surface-container-high": "#30253c",
+            "surface-container-highest": "#3b3047", "surface-variant": "#3b3047",
+            "on-surface": "#eedcfa", "on-surface-variant": "#cfc3cf",
+            "on-background": "#eedcfa", "background": "#190f24",
+            "primary": "#f8d5ff", "on-primary": "#481d59",
+            "primary-container": "#e8b1f8", "on-primary-container": "#6c3f7d",
+            "primary-fixed": "#f9d8ff", "primary-fixed-dim": "#eab3fa",
+            "on-primary-fixed": "#310343", "on-primary-fixed-variant": "#613472",
+            "inverse-primary": "#7b4c8b", "surface-tint": "#eab3fa",
+            "secondary": "#efb0ff", "on-secondary": "#54006e",
+            "secondary-container": "#a300d3", "on-secondary-container": "#f9d4ff",
+            "secondary-fixed": "#fad7ff", "secondary-fixed-dim": "#efb0ff",
+            "on-secondary-fixed": "#330044", "on-secondary-fixed-variant": "#77009a",
+            "tertiary": "#e7dcf7", "on-tertiary": "#342d42",
+            "tertiary-container": "#cbc0db", "on-tertiary-container": "#554e64",
+            "tertiary-fixed": "#e9def9", "tertiary-fixed-dim": "#cdc2dd",
+            "on-tertiary-fixed": "#1e182c", "on-tertiary-fixed-variant": "#4b4359",
+            "error": "#ffb4ab", "on-error": "#690005",
+            "error-container": "#93000a", "on-error-container": "#ffdad6",
+            "outline": "#988d98", "outline-variant": "#4d444e",
+            "inverse-surface": "#eedcfa", "inverse-on-surface": "#372c42",
+            "gold-accent": "#D4AF37"
+          },
+          borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+          spacing: { "stack-sm": "0.5rem", "stack-md": "1.5rem", "stack-lg": "3rem", "gutter": "1.5rem", "container-max": "1280px", "margin-mobile": "1rem", "margin-desktop": "2.5rem" },
+          fontFamily: { "display-lg": ["Playfair Display"], "headline-lg": ["Playfair Display"], "headline-md": ["Playfair Display"], "body-lg": ["Manrope"], "body-md": ["Manrope"], "label-md": ["Manrope"] },
+          fontSize: {
+            "display-lg": ["48px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "600" }],
+            "headline-lg": ["32px", { lineHeight: "1.3", fontWeight: "500" }],
+            "headline-md": ["24px", { lineHeight: "1.4", fontWeight: "500" }],
+            "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+            "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+            "label-md": ["14px", { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "600" }]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #190f24; color: #eedcfa; font-family: 'Manrope', sans-serif; }
+    .glass-card { background: rgba(255,255,255,0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease; }
+    .glass-card:hover { border-color: rgba(242,202,80,0.3); background: rgba(255,255,255,0.04); }
+    .aura-glow { background: radial-gradient(circle, rgba(242,202,80,0.08) 0%, rgba(26,16,37,0) 70%); }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="flex relative z-10">
+    <!-- Sidebar -->
+    <aside class="hidden lg:flex flex-col fixed left-0 top-0 h-screen border-r border-outline-variant/10 bg-surface-container-lowest w-64 shadow-xl">
+      <div class="p-6 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+          <span class="material-symbols-outlined text-on-primary-container">local_florist</span>
+        </div>
+        <div>
+          <h1 class="font-headline-md text-headline-md text-primary leading-tight">ArtisanCrafted</h1>
+          <p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label-md">Admin Suite</p>
+        </div>
+      </div>
+      <nav class="flex-1 mt-8 space-y-1 px-2">
+        <a class="bg-secondary-container/30 text-primary border-l-4 border-primary px-4 py-3 flex items-center gap-3 transition-all translate-x-1" href="/admin">
+          <span class="material-symbols-outlined">dashboard</span> <span class="font-label-md text-label-md">Dashboard</span>
+        </a>
+        <a class="text-on-surface-variant hover:bg-surface-variant/20 px-4 py-3 flex items-center gap-3 transition-all hover:text-on-surface" href="#">
+          <span class="material-symbols-outlined">inventory_2</span> <span class="font-label-md text-label-md">Products</span>
+        </a>
+        <a class="text-on-surface-variant hover:bg-surface-variant/20 px-4 py-3 flex items-center gap-3 transition-all hover:text-on-surface" href="#">
+          <span class="material-symbols-outlined">shopping_cart</span> <span class="font-label-md text-label-md">Orders</span>
+        </a>
+        <a class="text-on-surface-variant hover:bg-surface-variant/20 px-4 py-3 flex items-center gap-3 transition-all hover:text-on-surface" href="#">
+          <span class="material-symbols-outlined">group</span> <span class="font-label-md text-label-md">Customers</span>
+        </a>
+        <a class="text-on-surface-variant hover:bg-surface-variant/20 px-4 py-3 flex items-center gap-3 transition-all hover:text-on-surface" href="#">
+          <span class="material-symbols-outlined">monitoring</span> <span class="font-label-md text-label-md">Analytics</span>
+        </a>
+      </nav>
+      <div class="p-4 border-t border-outline-variant/10">
+        <a class="text-on-surface-variant hover:bg-surface-variant/20 px-4 py-3 flex items-center gap-3 transition-all hover:text-on-surface rounded-lg" href="/">
+          <span class="material-symbols-outlined">logout</span> <span class="font-label-md text-label-md">Back to Store</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 lg:ml-64 p-margin-mobile md:p-margin-desktop min-h-screen">
+      <!-- Header -->
+      <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-stack-lg">
+        <div>
+          <h2 class="font-display-lg text-display-lg text-on-surface mb-2">Dashboard Overview</h2>
+          <nav class="flex text-[12px] font-label-md text-on-surface-variant gap-2 uppercase tracking-widest">
+            <a class="hover:text-primary" href="/">Home</a><span>/</span><span class="text-primary">Admin Analytics</span>
+          </nav>
+        </div>
+        <div class="flex items-center gap-gutter">
+          <button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-primary-fixed duration-300 active:scale-95">
+            <span class="material-symbols-outlined text-[18px]">add_circle</span> Create New Order
+          </button>
+        </div>
+      </header>
+
+      <!-- Metric Cards -->
+      <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-stack-lg">
+        <div class="glass-card p-6 rounded-xl relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-24 h-24 aura-glow -translate-y-1/2 translate-x-1/2"></div>
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary"><span class="material-symbols-outlined">payments</span></div>
+            <span class="text-green-400 font-label-md text-[12px] flex items-center gap-1">+12.5% <span class="material-symbols-outlined text-[14px]">trending_up</span></span>
+          </div>
+          <p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider mb-1">Total Revenue</p>
+          <h3 id="metric-revenue" class="text-headline-lg font-headline-lg text-on-surface">$0.00</h3>
+        </div>
+        <div class="glass-card p-6 rounded-xl relative overflow-hidden group">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary"><span class="material-symbols-outlined">local_shipping</span></div>
+            <span class="text-on-surface-variant font-label-md text-[12px]">Active</span>
+          </div>
+          <p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider mb-1">Active Orders</p>
+          <h3 id="metric-orders" class="text-headline-lg font-headline-lg text-on-surface">0</h3>
+        </div>
+        <div class="glass-card p-6 rounded-xl relative overflow-hidden group">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary"><span class="material-symbols-outlined">inventory</span></div>
+          </div>
+          <p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider mb-1">Low Stock Items</p>
+          <h3 id="metric-lowstock" class="text-headline-lg font-headline-lg text-on-surface">0</h3>
+        </div>
+        <div class="glass-card p-6 rounded-xl relative overflow-hidden group">
+          <div class="flex justify-between items-start mb-4">
+            <div class="w-12 h-12 rounded-lg bg-error/10 flex items-center justify-center text-error"><span class="material-symbols-outlined">group</span></div>
+          </div>
+          <p class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider mb-1">Total Orders</p>
+          <h3 id="metric-total" class="text-headline-lg font-headline-lg text-on-surface">0</h3>
+        </div>
+      </section>
+
+      <!-- Orders Table -->
+      <section class="glass-card rounded-xl overflow-hidden mb-stack-lg">
+        <div class="p-8 border-b border-outline-variant/10">
+          <h4 class="font-headline-md text-headline-md text-on-surface">Order Management</h4>
+          <p class="text-on-surface-variant font-body-md text-sm">Processing current customer transactions.</p>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="bg-surface-container-low/50 border-b border-outline-variant/10">
+                <th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Order ID</th>
+                <th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Customer</th>
+                <th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest text-center">Date</th>
+                <th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest text-right">Total</th>
+                <th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest text-center">Status</th>
+                <th class="px-8 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-orders-table" class="divide-y divide-outline-variant/5">
+              <tr><td colspan="6" class="px-8 py-6 text-on-surface-variant text-center">Loading orders...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Low Stock Section -->
+      <section class="glass-card rounded-xl overflow-hidden mb-stack-lg">
+        <div class="p-8 border-b border-outline-variant/10">
+          <h4 class="font-headline-md text-headline-md text-on-surface">Low Stock Alert</h4>
+        </div>
+        <div id="low-stock-list" class="p-8">
+          <p class="text-on-surface-variant">Loading...</p>
+        </div>
+      </section>
+
+      <footer class="w-full py-12 flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-outline-variant/10">
+        <div class="flex items-center gap-2">
+          <span class="text-primary font-headline-md text-headline-md">ArtisanCrafted</span>
+          <span class="text-on-surface-variant font-label-md text-[12px] border-l border-outline-variant/30 pl-2">Admin Suite v2.0</span>
+        </div>
+        <p class="text-on-surface-variant font-body-md text-sm">&copy; 2024 ArtisanCrafted. All rights reserved.</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    async function loadDashboard() {
+      const token = localStorage.getItem('token');
+      if (!token) { return; }
+      try {
+        const res = await fetch('/api/admin/metrics', { headers: { 'Authorization': 'Bearer ' + token } });
+        if (!res.ok) return;
+        const data = await res.json();
+        document.getElementById('metric-revenue').textContent = '$' + (data.totalRevenue || 0).toFixed(2);
+        document.getElementById('metric-orders').textContent = data.activeOrdersCount || 0;
+        document.getElementById('metric-total').textContent = data.orderCount || 0;
+        document.getElementById('metric-lowstock').textContent = (data.lowStockProducts || []).length;
+
+        if (data.lowStockProducts && data.lowStockProducts.length) {
+          document.getElementById('low-stock-list').innerHTML = data.lowStockProducts.map(p => `
+            <div class="flex items-center justify-between py-3 border-b border-white/5">
+              <span class="text-on-surface">${p.title}</span>
+              <span class="text-error font-label-md text-sm">${p.stock} left</span>
+            </div>
+          `).join('');
+        }
+
+        const ordersRes = await fetch('/api/admin/orders', { headers: { 'Authorization': 'Bearer ' + token } });
+        if (ordersRes.ok) {
+          const orders = await ordersRes.json();
+          if (orders.length) {
+            document.getElementById('admin-orders-table').innerHTML = orders.map(o => {
+              const statusColor = o.fulfillmentStatus === 'Delivered' ? 'bg-green-500/10 text-green-400 border-green-500/20' : o.fulfillmentStatus === 'Cancelled' ? 'bg-red-500/10 text-red-400 border-red-500/20' : o.fulfillmentStatus === 'Shipped' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 'bg-primary/10 text-primary border-primary/20';
+              return `
+                <tr class="hover:bg-surface-variant/5 transition-colors group">
+                  <td class="px-8 py-6"><span class="font-label-md text-primary group-hover:underline">#${o.id}</span></td>
+                  <td class="px-8 py-6"><span class="text-on-surface font-body-md">${o.user?.name || o.user?.email || 'Unknown'}</span></td>
+                  <td class="px-8 py-6 text-center text-on-surface-variant text-sm">${new Date(o.createdAt).toLocaleDateString()}</td>
+                  <td class="px-8 py-6 text-right font-label-md text-on-surface">$${o.totalAmount.toFixed(2)}</td>
+                  <td class="px-8 py-6 text-center"><span class="px-3 py-1 ${statusColor} border rounded-full text-[10px] font-bold uppercase tracking-widest">${o.fulfillmentStatus}</span></td>
+                  <td class="px-8 py-6 text-right"><div class="flex justify-end gap-3 text-on-surface-variant"><button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">visibility</span></button></div></td>
+                </tr>`;
+            }).join('');
+          }
+        }
+      } catch (e) {
+        console.error('Dashboard load error:', e);
+      }
+    }
+    loadDashboard();
+  </script>
+</body>
+</html>

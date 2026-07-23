@@ -1,0 +1,196 @@
+<%- include('partials/header', { title: 'Secure Checkout' }) %>
+
+<main class="pt-28 px-margin-mobile md:px-margin-desktop pb-12">
+<div class="max-w-container-max mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+    <!-- Left Column: Checkout Info -->
+    <div class="lg:col-span-7 space-y-stack-lg">
+      <!-- Contact Section -->
+      <section class="space-y-stack-md">
+        <div class="flex items-center justify-between">
+          <h2 class="font-headline-md text-headline-md text-primary flex items-center gap-3">
+            <span class="text-gold-accent font-serif italic text-lg">01</span> Contact Information
+          </h2>
+          <span class="text-on-surface-variant text-sm">Already have an account? <a class="text-primary hover:underline" href="/login">Log in</a></span>
+        </div>
+        <div class="liquid-glass p-8 rounded-xl">
+          <div class="space-y-4">
+            <label class="block text-on-surface-variant font-label-md mb-1">Email Address</label>
+            <input class="w-full input-elegant py-3 text-body-lg text-on-surface" id="checkout-email" placeholder="julian@artisancrafted.com" type="email"/>
+          </div>
+        </div>
+      </section>
+
+      <!-- Shipping Section -->
+      <section class="space-y-stack-md">
+        <h2 class="font-headline-md text-headline-md text-primary flex items-center gap-3">
+          <span class="text-gold-accent font-serif italic text-lg">02</span> Shipping Destination
+        </h2>
+        <div class="liquid-glass p-8 rounded-xl space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+            <div class="space-y-2">
+              <label class="block text-on-surface-variant font-label-md">First Name</label>
+              <input class="w-full input-elegant py-2 text-on-surface" id="shipping-firstName" type="text"/>
+            </div>
+            <div class="space-y-2">
+              <label class="block text-on-surface-variant font-label-md">Last Name</label>
+              <input class="w-full input-elegant py-2 text-on-surface" id="shipping-lastName" type="text"/>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <label class="block text-on-surface-variant font-label-md">Address</label>
+            <input class="w-full input-elegant py-2 text-on-surface" id="shipping-address" placeholder="123 Artisan Lane" type="text"/>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+            <div class="space-y-2">
+              <label class="block text-on-surface-variant font-label-md">City</label>
+              <input class="w-full input-elegant py-2 text-on-surface" id="shipping-city" type="text"/>
+            </div>
+            <div class="space-y-2">
+              <label class="block text-on-surface-variant font-label-md">Postal Code</label>
+              <input class="w-full input-elegant py-2 text-on-surface" id="shipping-postalCode" type="text"/>
+            </div>
+            <div class="space-y-2">
+              <label class="block text-on-surface-variant font-label-md">Country</label>
+              <select class="w-full input-elegant py-2 text-on-surface bg-surface-container appearance-none" id="shipping-country">
+                <option>United Kingdom</option>
+                <option>United States</option>
+                <option>France</option>
+                <option>Japan</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Payment Section -->
+      <section class="space-y-stack-md">
+        <h2 class="font-headline-md text-headline-md text-primary flex items-center gap-3">
+          <span class="text-gold-accent font-serif italic text-lg">03</span> Secure Payment
+        </h2>
+        <div class="liquid-glass p-8 rounded-xl space-y-6">
+          <div class="space-y-2">
+            <label class="block text-on-surface-variant font-label-md">Card Number</label>
+            <input class="w-full input-elegant py-3 text-on-surface tracking-widest" placeholder="0000 0000 0000 0000" type="text"/>
+          </div>
+          <div class="grid grid-cols-2 gap-gutter">
+            <div class="space-y-2">
+              <label class="block text-on-surface-variant font-label-md">Expiration (MM/YY)</label>
+              <input class="w-full input-elegant py-2 text-on-surface" placeholder="12/26" type="text"/>
+            </div>
+            <div class="space-y-2">
+              <label class="block text-on-surface-variant font-label-md">CVV</label>
+              <input class="w-full input-elegant py-2 text-on-surface" placeholder="***" type="text"/>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Right Column: Order Summary -->
+    <div class="lg:col-span-5">
+      <div class="sticky top-28 space-y-stack-md">
+        <div class="liquid-glass p-8 rounded-xl border-t-2 border-primary-container/20">
+          <h3 class="font-headline-md text-headline-md text-primary mb-8 border-b border-white/5 pb-4">Order Summary</h3>
+          <div id="checkout-items" class="space-y-6 mb-8">
+            <p class="text-on-surface-variant text-sm">Loading...</p>
+          </div>
+          <div class="space-y-4 border-t border-white/5 pt-8 mb-8">
+            <div class="flex justify-between text-on-surface-variant">
+              <span>Subtotal</span><span id="checkout-subtotal">$0.00</span>
+            </div>
+            <div class="flex justify-between text-on-surface-variant">
+              <span>Shipping</span><span>$15.00</span>
+            </div>
+            <div class="flex justify-between text-on-surface-variant">
+              <span>Tax (VAT)</span><span id="checkout-tax">$0.00</span>
+            </div>
+            <div class="flex justify-between text-headline-md text-on-surface font-bold pt-4">
+              <span>Total</span><span id="checkout-total" class="text-gold-accent">$0.00</span>
+            </div>
+          </div>
+          <button onclick="placeOrder()" class="w-full py-4 rounded-lg btn-authorize text-on-primary font-bold font-headline-md tracking-wide flex items-center justify-center gap-3">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+            Authorize &amp; Place Order
+          </button>
+          <p class="text-[11px] text-center text-on-surface-variant/50 mt-6 leading-relaxed">
+            By clicking authorize, you agree to our Terms of Craft &amp; Private Logistics Policy.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+<script>
+  async function loadCheckout() {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+    try {
+      const res = await fetch('/api/cart', { headers: { 'Authorization': 'Bearer ' + token } });
+      const cart = await res.json();
+      let subtotal = 0;
+      const html = cart.map(item => {
+        const p = item.product;
+        if (!p || !p.title) return '';
+        const total = (p.price || 0) * (item.quantity || 1);
+        subtotal += total;
+        return `
+          <div class="flex gap-4 group">
+            <div class="relative w-20 h-24 overflow-hidden rounded bg-surface-container-high border border-white/10 shrink-0">
+              <img class="w-full h-full object-cover opacity-80" src="${p.image || ''}" alt="${p.title}"/>
+            </div>
+            <div class="flex flex-col justify-between py-1 flex-grow">
+              <div>
+                <h4 class="font-body-lg font-medium text-on-surface">${p.title}</h4>
+                <p class="text-sm text-on-surface-variant">${item.selectedVariant || ''}</p>
+              </div>
+              <p class="font-headline-md text-primary">$${total.toFixed(2)}</p>
+            </div>
+          </div>`;
+      }).join('');
+      document.getElementById('checkout-items').innerHTML = html || '<p class="text-on-surface-variant">No items</p>';
+      const tax = subtotal * 0.08;
+      document.getElementById('checkout-subtotal').textContent = '$' + subtotal.toFixed(2);
+      document.getElementById('checkout-tax').textContent = '$' + tax.toFixed(2);
+      document.getElementById('checkout-total').textContent = '$' + (subtotal + 15 + tax).toFixed(2);
+    } catch (e) {}
+  }
+
+  async function placeOrder() {
+    const token = localStorage.getItem('token');
+    if (!token) { window.location.href = '/login'; return; }
+    const shippingAddress = {
+      firstName: document.getElementById('shipping-firstName').value,
+      lastName: document.getElementById('shipping-lastName').value,
+      address: document.getElementById('shipping-address').value,
+      city: document.getElementById('shipping-city').value,
+      postalCode: document.getElementById('shipping-postalCode').value,
+      country: document.getElementById('shipping-country').value
+    };
+    if (!shippingAddress.firstName || !shippingAddress.lastName || !shippingAddress.address || !shippingAddress.city || !shippingAddress.postalCode) {
+      alert('Please fill in all shipping fields');
+      return;
+    }
+    try {
+      const res = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+        body: JSON.stringify({ shippingAddress })
+      });
+      if (res.ok) {
+        window.location.href = '/success';
+      } else {
+        const data = await res.json();
+        alert(data.message || 'Failed to place order');
+      }
+    } catch (e) {
+      alert('Error placing order');
+    }
+  }
+
+  loadCheckout();
+</script>
+
+<%- include('partials/footer') %>
