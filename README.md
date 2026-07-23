@@ -118,6 +118,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📬 Contact
 
-**Chandana M P** - [your.email@example.com](mailto:your.email@example.com)
+**Chandana M P** - [chandanakargal25@gmail.com]
 
 Project Link: [https://github.com/Chandana-m-p/CodeAlpha_Artisan](https://github.com/Chandana-m-p/CodeAlpha_Artisan)
