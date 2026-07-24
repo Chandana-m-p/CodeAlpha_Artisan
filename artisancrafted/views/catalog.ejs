@@ -1,73 +1,88 @@
 <%- include('partials/header', { title: 'Collections' }) %>
 
-<main class="pt-28 px-margin-mobile md:px-margin-desktop pb-12 max-w-[1440px] mx-auto min-h-screen">
-  <div class="mb-stack-lg">
-    <nav class="flex text-sm text-on-surface-variant/60 gap-2 mb-4">
-      <a class="hover:text-primary transition-colors" href="/">Home</a>
-      <span>/</span>
-      <span class="text-on-surface">Collections</span>
-    </nav>
-    <h1 class="font-display-lg text-display-lg text-on-surface mb-2">Exquisite Collections</h1>
-    <p class="text-on-surface-variant max-w-xl font-body-lg text-body-lg">Discover pieces that bridge the gap between historical heritage and contemporary luxury.</p>
+<main class="pt-28 px-margin-mobile md:px-margin-desktop pb-16 max-w-[1440px] mx-auto min-h-screen">
+  <!-- Header Title & Breadcrumb -->
+  <div class="mb-stack-lg flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-white/10 pb-8">
+    <div>
+      <nav class="flex text-xs text-on-surface-variant/60 gap-2 mb-3 font-label-md uppercase tracking-widest">
+        <a class="hover:text-primary transition-colors" href="/">Home</a>
+        <span>/</span>
+        <span class="text-primary font-bold">Collections</span>
+      </nav>
+      <h1 class="font-display-lg text-display-lg md:text-5xl text-on-surface mb-2">Exquisite Jewelry &amp; Atelier Artifacts</h1>
+      <p class="text-on-surface-variant max-w-xl font-body-lg text-sm md:text-base">Hand-carved gemstone pieces, solid gold solitaires, and heirloom ceramic vessels curated under Chandana M P.</p>
+    </div>
+    <div class="flex items-center gap-2 text-xs font-label-md text-gold-accent uppercase tracking-widest bg-gold-accent/10 px-4 py-2 rounded-full border border-gold-accent/30">
+      <span class="material-symbols-outlined text-sm">verified</span> Certified Master Craft
+    </div>
   </div>
 
   <div class="flex flex-col lg:flex-row gap-gutter">
     <!-- Sidebar Filters -->
     <aside class="w-full lg:w-72 shrink-0 space-y-4">
-      <div class="group">
-        <button class="w-full liquid-glass rounded-lg px-5 py-4 flex justify-between items-center group-hover:border-primary/50 transition-colors" onclick="toggleDropdown(this)">
-          <span class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Category</span>
+      <!-- Category Filter -->
+      <div class="group dropdown-active">
+        <button class="w-full liquid-glass rounded-xl px-5 py-4 flex justify-between items-center group-hover:border-primary/50 transition-colors" onclick="toggleDropdown(this)">
+          <span class="font-label-md text-xs uppercase tracking-widest text-on-surface font-bold">Categories</span>
           <span class="material-symbols-outlined text-primary chevron transition-transform duration-300">expand_more</span>
         </button>
-        <div class="dropdown-content mt-2 liquid-glass rounded-lg">
+        <div class="dropdown-content mt-2 liquid-glass rounded-xl">
           <div class="p-4 space-y-3">
             <label class="flex items-center gap-3 cursor-pointer group/item">
-              <input class="w-4 h-4 bg-surface rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox" data-filter="category" value="Jewelry"/>
-              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Fine Jewelry</span>
+              <input class="w-4 h-4 bg-surface rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox" data-filter="category" value="Fine Jewelry"/>
+              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors text-sm font-label-md">Fine Jewelry</span>
             </label>
             <label class="flex items-center gap-3 cursor-pointer group/item">
               <input class="w-4 h-4 bg-surface rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox" data-filter="category" value="Ceramics"/>
-              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Ceramics</span>
+              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors text-sm font-label-md">Ceramic Art</span>
             </label>
             <label class="flex items-center gap-3 cursor-pointer group/item">
               <input class="w-4 h-4 bg-surface rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox" data-filter="category" value="Leather Goods"/>
-              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Leather Goods</span>
+              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors text-sm font-label-md">Leather Goods</span>
             </label>
           </div>
         </div>
       </div>
-      <div class="group">
-        <button class="w-full liquid-glass rounded-lg px-5 py-4 flex justify-between items-center group-hover:border-primary/50 transition-colors" onclick="toggleDropdown(this)">
-          <span class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Price Range</span>
+
+      <!-- Price Range Filter -->
+      <div class="group dropdown-active">
+        <button class="w-full liquid-glass rounded-xl px-5 py-4 flex justify-between items-center group-hover:border-primary/50 transition-colors" onclick="toggleDropdown(this)">
+          <span class="font-label-md text-xs uppercase tracking-widest text-on-surface font-bold">Investment Tier</span>
           <span class="material-symbols-outlined text-primary chevron transition-transform duration-300">expand_more</span>
         </button>
-        <div class="dropdown-content mt-2 liquid-glass rounded-lg">
+        <div class="dropdown-content mt-2 liquid-glass rounded-xl">
           <div class="p-4 space-y-3">
             <label class="flex items-center gap-3 cursor-pointer group/item">
-              <input class="w-4 h-4 bg-surface border-outline-variant text-primary focus:ring-primary/20" name="price" type="radio" data-filter="price" value="under100"/>
-              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors">Under $100</span>
+              <input class="w-4 h-4 bg-surface border-outline-variant text-primary focus:ring-primary/20" name="price" type="radio" data-filter="price" value="all" checked/>
+              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors text-sm font-label-md">All Price Tiers</span>
             </label>
             <label class="flex items-center gap-3 cursor-pointer group/item">
               <input class="w-4 h-4 bg-surface border-outline-variant text-primary focus:ring-primary/20" name="price" type="radio" data-filter="price" value="under500"/>
-              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors">$100 - $500</span>
+              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors text-sm font-label-md">Under $500</span>
             </label>
             <label class="flex items-center gap-3 cursor-pointer group/item">
-              <input class="w-4 h-4 bg-surface border-outline-variant text-primary focus:ring-primary/20" name="price" type="radio" data-filter="price" value="500plus"/>
-              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors">$500+</span>
+              <input class="w-4 h-4 bg-surface border-outline-variant text-primary focus:ring-primary/20" name="price" type="radio" data-filter="price" value="500to1000"/>
+              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors text-sm font-label-md">$500 &ndash; $1,000</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer group/item">
+              <input class="w-4 h-4 bg-surface border-outline-variant text-primary focus:ring-primary/20" name="price" type="radio" data-filter="price" value="1000plus"/>
+              <span class="text-on-surface-variant group-hover/item:text-primary transition-colors text-sm font-label-md">$1,000+</span>
             </label>
           </div>
         </div>
       </div>
-      <div class="group">
-        <button class="w-full liquid-glass rounded-lg px-5 py-4 flex justify-between items-center group-hover:border-primary/50 transition-colors" onclick="toggleDropdown(this)">
-          <span class="font-label-md text-label-md uppercase tracking-widest text-on-surface">Search</span>
+
+      <!-- Instant Search -->
+      <div class="group dropdown-active">
+        <button class="w-full liquid-glass rounded-xl px-5 py-4 flex justify-between items-center group-hover:border-primary/50 transition-colors" onclick="toggleDropdown(this)">
+          <span class="font-label-md text-xs uppercase tracking-widest text-on-surface font-bold">Search Catalog</span>
           <span class="material-symbols-outlined text-primary chevron transition-transform duration-300">expand_more</span>
         </button>
-        <div class="dropdown-content mt-2 liquid-glass rounded-lg">
+        <div class="dropdown-content mt-2 liquid-glass rounded-xl">
           <div class="p-4">
             <div class="relative">
-              <span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-              <input id="search-input" class="w-full bg-transparent border-b border-outline-variant/50 focus:border-primary pl-10 pr-4 py-2 text-sm text-on-surface transition-colors outline-none" placeholder="Search craft..." type="text"/>
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+              <input id="search-input" class="w-full bg-transparent border-b border-outline-variant/50 focus:border-primary pl-9 pr-4 py-2 text-sm text-on-surface transition-colors outline-none placeholder:text-outline/40" placeholder="Search by gemstone, gold..." type="text"/>
             </div>
           </div>
         </div>
@@ -87,8 +102,6 @@
   function toggleDropdown(button) {
     const parent = button.closest('.group');
     parent.classList.toggle('dropdown-active');
-    const allDropdowns = document.querySelectorAll('.dropdown-active');
-    allDropdowns.forEach(dd => { if (dd !== parent) dd.classList.remove('dropdown-active'); });
   }
 
   let allProducts = [];
@@ -99,61 +112,72 @@
       allProducts = await res.json();
       renderProducts(allProducts);
     } catch (e) {
-      document.getElementById('product-grid').innerHTML = '<p class="text-on-surface-variant col-span-full text-center py-12">Unable to load products.</p>';
+      document.getElementById('product-grid').innerHTML = '<p class="text-on-surface-variant col-span-full text-center py-12">Unable to load catalog.</p>';
     }
   }
 
   function renderProducts(products) {
     const grid = document.getElementById('product-grid');
     if (!products.length) {
-      grid.innerHTML = '<p class="text-on-surface-variant col-span-full text-center py-12">No products match your filters.</p>';
+      grid.innerHTML = '<p class="text-on-surface-variant col-span-full text-center py-12">No jewelry artifacts match your query.</p>';
       return;
     }
-    grid.innerHTML = products.map(p => `
-      <div class="liquid-glass rounded-xl overflow-hidden flex flex-col relative group">
-        <div class="aura-glow"></div>
-        <div class="h-64 overflow-hidden relative">
-          <a href="/product/${p._id || p.id}">
-            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="${p.image}" alt="${p.title}"/>
-          </a>
-          <button class="absolute top-4 right-4 bg-surface/80 p-2 rounded-full backdrop-blur hover:bg-primary hover:text-on-primary transition-all">
-            <span class="material-symbols-outlined text-sm">favorite</span>
-          </button>
-        </div>
-        <div class="p-6 flex flex-col flex-grow">
-          <div class="flex justify-between items-start mb-2">
-            <h3 class="font-headline-md text-headline-md text-on-surface">${p.title}</h3>
-            <span class="text-primary font-bold">$${p.price.toFixed(0)}</span>
-          </div>
-          <p class="text-on-surface-variant text-sm mb-4 line-clamp-2">${p.description}</p>
-          <div class="mt-auto flex justify-between items-center">
-            <div class="flex items-center gap-1 text-primary">
-              ${'<span class="material-symbols-outlined text-xs" style="font-variation-settings: \'FILL\' 1;">star</span>'.repeat(Math.floor(p.rating || 5))}
-              <span class="text-on-surface-variant text-xs ml-1">${p.category}</span>
+    grid.innerHTML = products.map(p => {
+      const stockBadge = p.stock <= 4 ? `<span class="bg-error/20 text-error border border-error/30 px-3 py-1 rounded-full text-[10px] uppercase font-bold tracking-wider">Only ${p.stock} Left</span>` : `<span class="bg-green-500/10 text-green-400 border border-green-500/20 px-3 py-1 rounded-full text-[10px] uppercase font-bold tracking-wider">In Atelier Stock</span>`;
+      return `
+        <div class="glass-card rounded-2xl overflow-hidden flex flex-col relative group border border-white/10 hover:border-gold-accent/40 transition-all duration-500 shadow-xl">
+          <div class="aura-glow"></div>
+          <div class="h-72 overflow-hidden relative">
+            <a href="/product/${p._id || p.id}">
+              <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="${p.image}" alt="${p.title}"/>
+            </a>
+            <div class="absolute top-4 left-4">
+              ${stockBadge}
             </div>
-            <a href="/product/${p._id || p.id}" class="bg-primary text-on-primary px-4 py-1.5 rounded-full font-label-md text-xs hover:bg-primary-fixed-dim transition-colors">Explore</a>
+            <button onclick="showToast('Saved ${p.title} to your favorites!', 'success')" class="absolute top-4 right-4 bg-surface/80 p-2.5 rounded-full backdrop-blur-md text-on-surface-variant hover:text-primary border border-white/10 hover:border-primary/50 transition-all">
+              <span class="material-symbols-outlined text-sm">favorite</span>
+            </button>
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="flex justify-between items-start mb-2">
+              <span class="text-[11px] font-label-md text-gold-accent uppercase tracking-widest font-bold">${p.category}</span>
+              <span class="text-primary font-headline-md text-xl font-bold">$${p.price.toFixed(0)}</span>
+            </div>
+            <a href="/product/${p._id || p.id}">
+              <h3 class="font-headline-md text-lg text-on-surface group-hover:text-primary transition-colors mb-2">${p.title}</h3>
+            </a>
+            <p class="text-on-surface-variant text-sm mb-6 line-clamp-2 leading-relaxed">${p.description}</p>
+            <div class="mt-auto flex justify-between items-center pt-4 border-t border-white/5">
+              <div class="flex items-center gap-1 text-gold-accent">
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="text-on-surface text-xs font-bold">${p.rating || 5.0}</span>
+              </div>
+              <a href="/product/${p._id || p.id}" class="bg-primary-container text-on-primary-container px-5 py-2 rounded-full font-label-md text-xs font-bold hover:scale-105 transition-transform flex items-center gap-1">
+                Explore <span class="material-symbols-outlined text-xs">arrow_forward</span>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   }
 
   function applyFilters() {
     let filtered = [...allProducts];
     const checkedCategories = [...document.querySelectorAll('[data-filter="category"]:checked')].map(c => c.value);
     if (checkedCategories.length) {
-      filtered = filtered.filter(p => checkedCategories.includes(p.category));
+      filtered = filtered.filter(p => checkedCategories.includes(p.category) || (p.category === 'Fine Jewelry' && checkedCategories.includes('Jewelry')));
     }
     const priceFilter = document.querySelector('[data-filter="price"]:checked');
     if (priceFilter) {
       const val = priceFilter.value;
-      if (val === 'under100') filtered = filtered.filter(p => p.price < 100);
-      else if (val === 'under500') filtered = filtered.filter(p => p.price < 500);
-      else if (val === '500plus') filtered = filtered.filter(p => p.price >= 500);
+      if (val === 'under500') filtered = filtered.filter(p => p.price < 500);
+      else if (val === '500to1000') filtered = filtered.filter(p => p.price >= 500 && p.price <= 1000);
+      else if (val === '1000plus') filtered = filtered.filter(p => p.price > 1000);
     }
     const search = document.getElementById('search-input').value.toLowerCase();
     if (search) {
-      filtered = filtered.filter(p => p.title.toLowerCase().includes(search) || p.description.toLowerCase().includes(search));
+      filtered = filtered.filter(p => p.title.toLowerCase().includes(search) || p.description.toLowerCase().includes(search) || p.category.toLowerCase().includes(search));
     }
     renderProducts(filtered);
   }

@@ -8,6 +8,15 @@ const router = express.Router();
 
 router.use(protect);
 
+router.get('/', async (req, res, next) => {
+  try {
+    const orders = Order.find({ user_id: req.user.id }, { createdAt: -1 });
+    res.json(orders);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post('/', async (req, res, next) => {
   try {
     const user = User.findById(req.user.id);

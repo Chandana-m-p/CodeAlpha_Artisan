@@ -203,7 +203,7 @@
         const res = await fetch('/api/admin/metrics', { headers: { 'Authorization': 'Bearer ' + token } });
         if (!res.ok) return;
         const data = await res.json();
-        document.getElementById('metric-revenue').textContent = '$' + (data.totalRevenue || 0).toFixed(2);
+        document.getElementById('metric-revenue').textContent = '₹' + Math.round(data.totalRevenue || 0).toLocaleString('en-IN');
         document.getElementById('metric-orders').textContent = data.activeOrdersCount || 0;
         document.getElementById('metric-total').textContent = data.orderCount || 0;
         document.getElementById('metric-lowstock').textContent = (data.lowStockProducts || []).length;
@@ -228,7 +228,7 @@
                   <td class="px-8 py-6"><span class="font-label-md text-primary group-hover:underline">#${o.id}</span></td>
                   <td class="px-8 py-6"><span class="text-on-surface font-body-md">${o.user?.name || o.user?.email || 'Unknown'}</span></td>
                   <td class="px-8 py-6 text-center text-on-surface-variant text-sm">${new Date(o.createdAt).toLocaleDateString()}</td>
-                  <td class="px-8 py-6 text-right font-label-md text-on-surface">$${o.totalAmount.toFixed(2)}</td>
+                  <td class="px-8 py-6 text-right font-label-md text-on-surface">₹${Number(o.totalAmount || 0).toLocaleString('en-IN')}</td>
                   <td class="px-8 py-6 text-center"><span class="px-3 py-1 ${statusColor} border rounded-full text-[10px] font-bold uppercase tracking-widest">${o.fulfillmentStatus}</span></td>
                   <td class="px-8 py-6 text-right"><div class="flex justify-end gap-3 text-on-surface-variant"><button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]">visibility</span></button></div></td>
                 </tr>`;

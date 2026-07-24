@@ -1,8 +1,62 @@
-const Database = require('better-sqlite3');
+const { DatabaseSync } = require('node:sqlite');
 const path = require('path');
+const fs = require('fs');
 
-const dbPath = path.join(__dirname, 'data', 'artisancrafted.db');
-const db = new Database(dbPath);
+const dataDir = path.join(__dirname, 'data');
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir, { recursive: true });
+}
+
+const dbPath = path.join(dataDir, 'artisancrafted.db');
+
+class SQLiteWrapper {
+  constructor(path) {
+    this.rawDb = new DatabaseSync(path);
+  }
+
+  pragma(sql) {
+    this.rawDb.exec(`PRAGMA ${sql}`);
+  }
+
+  exec(sql) {
+    return this.rawDb.exec(sql);
+  }
+
+  prepare(sql) {
+    const stmt = this.rawDb.prepare(sql);
+    return {
+      get(...params) {
+        return stmt.get(...params);
+      },
+      all(...params) {
+        return stmt.all(...params);
+      },
+      run(...params) {
+        const res = stmt.run(...params);
+        return {
+          changes: Number(res.changes || 0),
+          lastInsertRowid: Number(res.lastInsertRowid || 0)
+        };
+      }
+    };
+  }
+
+  transaction(fn) {
+    return (...args) => {
+      this.rawDb.exec('BEGIN TRANSACTION');
+      try {
+        const result = fn(...args);
+        this.rawDb.exec('COMMIT');
+        return result;
+      } catch (error) {
+        this.rawDb.exec('ROLLBACK');
+        throw error;
+      }
+    };
+  }
+}
+
+const db = new SQLiteWrapper(dbPath);
 
 db.pragma('journal_mode = WAL');
 db.pragma('foreign_keys = ON');

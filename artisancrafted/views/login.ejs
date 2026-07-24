@@ -1,66 +1,139 @@
 <%- include('partials/header', { title: 'Sign In' }) %>
 
-<main class="flex items-center justify-center min-h-[80vh] relative px-margin-mobile">
-  <div class="aura-glow absolute w-[600px] h-[600px] top-[-10%] left-[-10%] opacity-40"></div>
-  <div class="aura-glow absolute w-[600px] h-[600px] bottom-[-10%] right-[-10%] opacity-30"></div>
+<main class="min-h-screen relative pt-20 flex items-center justify-center overflow-hidden">
+  <!-- Ultra-Clean High-Definition Video Backdrop Layer -->
+  <div class="fixed inset-0 -z-10 overflow-hidden">
+    <img src="/images/bg_loop.webp" alt="HD Video Background" class="w-full h-full object-cover opacity-70 filter brightness-105 contrast-110 saturate-120 pointer-events-none scale-100"/>
+    <div class="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-background/90"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50"></div>
+  </div>
 
-  <div class="w-full max-w-[480px] z-10">
-    <div class="liquid-glass rounded-xl p-8 md:p-12 shadow-2xl">
-      <header class="text-center mb-10">
-        <h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Welcome Back</h1>
-        <p class="font-body-md text-body-md text-on-surface-variant">Access your saved collections and orders</p>
-      </header>
+  <div class="aura-glow fixed w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50 pointer-events-none"></div>
 
-      <form id="login-form" class="space-y-6">
-        <div class="space-y-2">
-          <label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2" for="email">
-            <span class="material-symbols-outlined text-[18px]">mail</span> Email Address
-          </label>
-          <input class="input-elegant w-full px-0 py-3 font-body-md text-on-surface placeholder:text-outline/40" id="email" name="email" placeholder="curator@artisancrafted.com" required type="email"/>
+  <!-- Main Luxury Split-Screen Vault Container -->
+  <div class="max-w-[1240px] w-full mx-auto px-4 py-8 z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      
+      <!-- Left Column: High-End Interactive Showcase -->
+      <div class="lg:col-span-6 hidden lg:flex flex-col justify-between space-y-8 p-8 liquid-glass rounded-3xl border border-gold-accent/30 shadow-2xl relative overflow-hidden backdrop-blur-xl">
+        <div class="aura-glow absolute -top-20 -left-20 w-80 h-80 opacity-60"></div>
+        
+        <div class="space-y-4 relative z-10">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-accent/10 border border-gold-accent/40 text-gold-accent text-xs font-label-md uppercase tracking-widest font-bold">
+            <span class="material-symbols-outlined text-sm">verified</span> Atelier Member Vault
+          </div>
+          <h2 class="font-display-lg text-4xl text-on-surface leading-tight">
+            Step Into the Realm of <br/>
+            <span class="italic champagne-accent">Uncompromised Mastery.</span>
+          </h2>
+          <p class="text-on-surface-variant font-body-lg text-sm leading-relaxed max-w-md">
+            Unlock bespoke gemstone archives, personalized order tracking, and private curator consultations under lead artisan <strong>Chandana M P</strong>.
+          </p>
         </div>
-        <div class="space-y-2">
-          <label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2" for="password">
-            <span class="material-symbols-outlined text-[18px]">lock</span> Password
-          </label>
-          <input class="input-elegant w-full px-0 py-3 font-body-md text-on-surface" id="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" required type="password"/>
-        </div>
-        <div id="login-error" class="text-error text-sm hidden"></div>
-        <div class="flex items-center justify-between pt-2">
-          <label class="flex items-center space-x-2 cursor-pointer">
-            <input class="rounded border-outline-variant bg-surface-container-low text-primary focus:ring-primary/40" type="checkbox"/>
-            <span class="font-label-md text-label-md text-on-surface-variant">Remember Me</span>
-          </label>
-          <a class="font-label-md text-label-md text-primary hover:underline" href="#">Forgot Password?</a>
-        </div>
-        <button class="primary-glow-button w-full py-4 bg-primary-container text-on-primary-container font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 group transition-all" type="submit">
-          Sign In
-          <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-        </button>
-      </form>
 
-      <div class="relative my-stack-md text-center">
-        <span class="absolute inset-x-0 top-1/2 h-px bg-outline-variant/20"></span>
-        <span class="relative px-4 bg-surface-container font-label-md text-[10px] uppercase tracking-widest text-outline/60">Or continue with</span>
+        <!-- Featured Artifact Card Showcase -->
+        <div class="relative z-10 p-6 rounded-2xl bg-surface-container-lowest/80 border border-white/10 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs uppercase font-label-md text-gold-accent tracking-widest font-bold">Curator Spotlight</span>
+            <span class="text-xs text-on-surface-variant">100% Certified</span>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-20 h-20 rounded-xl overflow-hidden border border-white/10 shrink-0">
+              <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=400&q=80" alt="Royal Solitaire Diamond Ring" class="w-full h-full object-cover"/>
+            </div>
+            <div>
+              <h4 class="font-headline-md text-lg text-primary font-bold">Royal Solitaire Diamond Ring</h4>
+              <p class="text-xs text-on-surface-variant">1.5-carat solitaire diamond in 18K white gold.</p>
+              <p class="text-sm font-bold text-gold-accent mt-1">₹1,45,000 INR</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Master Guarantee Bar -->
+        <div class="flex items-center justify-between border-t border-white/10 pt-4 text-xs font-label-md text-on-surface-variant">
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-gold-accent text-sm">shield</span> Insured Global Shipping</span>
+          <span class="flex items-center gap-1"><span class="material-symbols-outlined text-gold-accent text-sm">workspace_premium</span> Certificate by Chandana M P</span>
+        </div>
       </div>
-      <div class="grid grid-cols-2 gap-stack-sm">
-        <button class="flex items-center justify-center gap-2 py-3 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-variant/20 transition-all font-label-md text-label-md">
-          <span class="material-symbols-outlined">google</span> Google
-        </button>
-        <button class="flex items-center justify-center gap-2 py-3 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-variant/20 transition-all font-label-md text-label-md">
-          <span class="material-symbols-outlined">phone_iphone</span> Apple
-        </button>
+
+      <!-- Right Column: Exciting Liquid Glass Sign In Card -->
+      <div class="lg:col-span-6 w-full max-w-[520px] mx-auto">
+        <div class="liquid-glass rounded-3xl p-8 md:p-12 shadow-[0_25px_70px_rgba(0,0,0,0.8)] border border-gold-accent/40 relative backdrop-blur-2xl">
+          
+          <!-- Animated Tab Navigation -->
+          <div class="flex justify-between items-center mb-8 border-b border-white/10 pb-4">
+            <a href="/login" class="font-headline-md text-xl font-bold text-primary border-b-2 border-primary pb-2 flex items-center gap-2">
+              <span class="material-symbols-outlined text-gold-accent text-base">login</span> Sign In
+            </a>
+            <a href="/register" class="font-headline-md text-xl font-medium text-on-surface-variant hover:text-primary transition-colors pb-2 flex items-center gap-2">
+              <span class="material-symbols-outlined text-base">person_add</span> Register
+            </a>
+          </div>
+
+          <header class="text-center mb-8">
+            <h1 class="font-display-lg text-3xl text-on-surface mb-2">Welcome Back</h1>
+            <p class="font-body-md text-xs text-on-surface-variant">Access your personalized acquisitions and saved collections</p>
+          </header>
+
+          <!-- Quick Auto-Fill Access Badge -->
+          <div class="mb-6 p-3.5 rounded-2xl bg-gold-accent/10 border border-gold-accent/40 flex items-center justify-between hover:bg-gold-accent/15 transition-colors">
+            <div class="flex items-center gap-2.5">
+              <div class="w-7 h-7 rounded-full bg-gold-accent text-background font-bold text-xs flex items-center justify-center">C</div>
+              <span class="text-xs font-label-md text-on-surface">Default Curator: <strong>Chandana M P</strong></span>
+            </div>
+            <button type="button" onclick="fillQuickLogin()" class="text-xs font-label-md text-gold-accent font-bold hover:underline px-3 py-1 rounded-full bg-gold-accent/20 border border-gold-accent/40">Auto-Fill</button>
+          </div>
+
+          <form id="login-form" class="space-y-5">
+            <div class="space-y-2">
+              <label class="font-label-md text-xs text-on-surface-variant uppercase tracking-wider flex items-center gap-2" for="email">
+                <span class="material-symbols-outlined text-sm text-gold-accent">mail</span> Email Address
+              </label>
+              <input class="input-elegant w-full px-0 py-2.5 font-body-md text-on-surface text-sm placeholder:text-outline/40" id="email" name="email" placeholder="chandana@artisancrafted.com" required type="email"/>
+            </div>
+
+            <div class="space-y-2">
+              <label class="font-label-md text-xs text-on-surface-variant uppercase tracking-wider flex items-center gap-2" for="password">
+                <span class="material-symbols-outlined text-sm text-gold-accent">lock</span> Password
+              </label>
+              <input class="input-elegant w-full px-0 py-2.5 font-body-md text-on-surface text-sm" id="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" required type="password"/>
+            </div>
+
+            <div id="login-error" class="text-error text-xs hidden bg-error/10 p-3 rounded-lg border border-error/20"></div>
+
+            <div class="flex items-center justify-between pt-1 text-xs">
+              <label class="flex items-center space-x-2 cursor-pointer">
+                <input class="rounded border-outline-variant bg-surface-container-low text-primary focus:ring-primary/40" type="checkbox" checked/>
+                <span class="font-label-md text-on-surface-variant">Remember Me</span>
+              </label>
+              <a class="font-label-md text-gold-accent hover:underline font-bold" href="#">Forgot Password?</a>
+            </div>
+
+            <button class="primary-glow-button w-full py-4 bg-primary-container text-on-primary-container font-label-md text-sm font-bold uppercase tracking-wider rounded-xl flex items-center justify-center gap-2 group transition-all shadow-xl" type="submit">
+              Sign In to Atelier
+              <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </button>
+          </form>
+
+          <footer class="mt-8 text-center border-t border-white/10 pt-6">
+            <p class="font-body-md text-xs text-on-surface-variant">
+              New to ArtisanCrafted?
+              <a class="text-gold-accent font-bold hover:underline ml-1" href="/register">Create an Account</a>
+            </p>
+          </footer>
+        </div>
       </div>
+
     </div>
-    <footer class="mt-stack-md text-center">
-      <p class="font-body-md text-body-md text-on-surface-variant">
-        New to ArtisanCrafted?
-        <a class="text-primary font-bold hover:text-primary-fixed-dim transition-colors ml-1" href="/register">Create an Account</a>
-      </p>
-    </footer>
   </div>
 </main>
 
 <script>
+  function fillQuickLogin() {
+    document.getElementById('email').value = 'chandana@artisancrafted.com';
+    document.getElementById('password').value = 'password123';
+  }
+
   document.getElementById('login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const errorEl = document.getElementById('login-error');
@@ -80,7 +153,8 @@
         return;
       }
       localStorage.setItem('token', data.token);
-      window.location.href = '/catalog';
+      showToast('Welcome back, ' + (data.name || 'Chandana M P') + '!', 'success');
+      setTimeout(() => window.location.href = '/catalog', 1000);
     } catch (err) {
       errorEl.textContent = 'Connection error. Please try again.';
       errorEl.classList.remove('hidden');

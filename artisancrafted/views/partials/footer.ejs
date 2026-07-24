@@ -1,13 +1,71 @@
-  <footer class="w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-container-lowest border-t border-outline-variant/20">
-    <div class="flex flex-col items-center md:items-start gap-2">
-      <span class="text-headline-md font-headline-md text-primary">ArtisanCrafted</span>
-      <p class="font-body-md text-body-md text-on-surface-variant/60">&copy; 2024 ArtisanCrafted. All rights reserved.</p>
-    </div>
-    <div class="flex gap-8">
-      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a>
-      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
-      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">FAQs</a>
-      <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping</a>
+  <footer class="w-full bg-surface-container-lowest border-t border-outline-variant/20 pt-16 pb-12 px-4 md:px-margin-desktop relative z-10">
+    <div class="max-w-container-max mx-auto space-y-12">
+      <!-- Newsletter Section -->
+      <div class="glass-card rounded-2xl p-8 md:p-12 flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden border-t border-gold-accent/30">
+        <div class="aura-glow absolute inset-0 -z-10 opacity-30"></div>
+        <div class="space-y-2 text-center md:text-left">
+          <span class="text-xs uppercase tracking-widest text-gold-accent font-label-md font-bold">The Atelier Circle</span>
+          <h3 class="font-display-lg text-2xl text-on-surface">Receive Exclusive Private Batch Drops</h3>
+          <p class="text-on-surface-variant text-sm max-w-md">Subscribe to get early access to limited artisanal collections and private invitations.</p>
+        </div>
+        <form onsubmit="event.preventDefault(); showToast('Thank you for subscribing to the Atelier Circle!'); this.reset();" class="flex w-full md:w-auto gap-2">
+          <input type="email" placeholder="curator@artisancrafted.com" required class="input-elegant bg-surface-container/60 px-4 py-3 rounded-lg text-sm text-on-surface placeholder:text-outline/40 w-full md:w-72 focus:ring-1 focus:ring-primary"/>
+          <button type="submit" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-label-md text-xs font-bold uppercase tracking-wider hover:scale-105 transition-transform shrink-0">
+            Subscribe
+          </button>
+        </form>
+      </div>
+
+      <!-- Main Footer Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter pt-6">
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-gold-accent text-xl">diamond</span>
+            <span class="text-xl font-headline-md font-bold text-primary">ArtisanCrafted</span>
+          </div>
+          <p class="font-body-md text-sm text-on-surface-variant/80 leading-relaxed">
+            Curated handmade luxury artifacts. Sculpted, finished, and certified under the leadership of master artisan <strong>Chandana M P</strong>.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-label-md text-xs uppercase tracking-widest text-gold-accent mb-4">Collections</h4>
+          <ul class="space-y-2 text-sm text-on-surface-variant">
+            <li><a href="/catalog" class="hover:text-primary transition-colors">Fine Jewelry</a></li>
+            <li><a href="/catalog" class="hover:text-primary transition-colors">Sculptural Ceramics</a></li>
+            <li><a href="/catalog" class="hover:text-primary transition-colors">Artisan Leather Goods</a></li>
+            <li><a href="/catalog" class="hover:text-primary transition-colors">Archive &amp; Vault Items</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-label-md text-xs uppercase tracking-widest text-gold-accent mb-4">Atelier Care</h4>
+          <ul class="space-y-2 text-sm text-on-surface-variant">
+            <li><a href="#" class="hover:text-primary transition-colors">Certificate Authenticity</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Bespoke Variations</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Insured Shipping Policy</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Care &amp; Restoration</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-label-md text-xs uppercase tracking-widest text-gold-accent mb-4">Concierge</h4>
+          <ul class="space-y-2 text-sm text-on-surface-variant">
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-primary">mail</span> chandanakargal25@gmail.com</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-primary">support_agent</span> Private Concierge Desk</li>
+            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-primary">lock</span> 256-Bit Encrypted Checkout</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-on-surface-variant/60">
+        <p>&copy; 2026 ArtisanCrafted by <strong>Chandana M P</strong>. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-primary transition-colors">Terms of Craft</a>
+          <a href="#" class="hover:text-primary transition-colors">Authenticity Guarantee</a>
+        </div>
+      </div>
     </div>
   </footer>
 </body>
